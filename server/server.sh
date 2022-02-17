@@ -1,7 +1,7 @@
 
 PORT=8000
 
-fuser -k 8000/tcp
+# fuser -k 8000/tcp
 
 cd build/web
 
