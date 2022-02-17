@@ -1,19 +1,14 @@
-name: flutter build
+name: build container
 
 on: [ push ]
 
+env:
+  API_IMG: "ghcr.io/git-compendium/ci-docker/api:latest"
+
 jobs:
   build:
-    runs-on: unbuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: update os
-        run: apt-get update && apt-get install -y curl git wget unzip python3
-      - name: clone flutter
-        run: git clone https://github.com/flutter/flutter.git /usr/local/flutter
-      - name: add flutter to path
-        run: PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
-      - name: upgrade flutter
-        run: flutter channel master && flutter upgrade && flutter config --enable-web
-      - name: Build
-        run: flutter build web
+      - name: Build docker image
+        run: docker build .

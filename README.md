@@ -10,4 +10,3 @@
  - once you have done this you can use docker with the `dm` command
  - usual deveelopment cycle should look something like this:
  - make change -> dm build -> dm up -> [localhost:8000](localhost:8000) -> dm kill
-
