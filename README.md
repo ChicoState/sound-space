@@ -15,6 +15,7 @@
 <!-- [online documentation](https://flutter.dev/docs), which offers tutorials, -->
 <!-- samples, guidance on mobile development, and a full API reference. -->
 
+
 # DEVELOPMENT
 
 ## to use docker
@@ -23,4 +24,5 @@
  - you must first run `bash docker_manage.sh setup`
  - once you have done this you can use docker with the `dm` command
  - usual deveelopment cycle should look something like this:
- -  make change -> dm build -> dm up -> [localhost:8000](localhost:8000) -> dm kill
+ - make change -> dm build -> dm up -> [localhost:8000](localhost:8000) -> dm kill
+
