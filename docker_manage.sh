@@ -5,6 +5,7 @@ IMAGES=$(docker ps -q)
 case $1 in
 	"kill" | "down")
 		docker-compose down
+		yes | docker image prune
 	;;
 	"build")
 		# docker build . -t soundspace
