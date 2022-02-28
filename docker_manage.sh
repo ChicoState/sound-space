@@ -1,7 +1,5 @@
 #!/bin/bash
 
-IMAGES=$(docker ps -q)
-
 case $1 in
 	"kill" | "down")
 		docker-compose down
