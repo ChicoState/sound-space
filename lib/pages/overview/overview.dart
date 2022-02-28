@@ -11,48 +11,40 @@ class ImageHandler extends StatefulWidget {
 // This widget is tracking its own state
 class _ImageHandlerState extends State<ImageHandler> {
   // private vars
-  bool _isTapped = false;
-  int _tapped = 0;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          // logic to change isTapped
-          _isTapped = !_isTapped;
-        });
-      },
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          // This is teh button
-          SizedBox(
-            width: 100.0,
-            height: 50.0,
-            child: Container(
-              child: Center(
-                child: Text(
-                  _isTapped ? 'Tapped' : 'unTapped',
-                  style: const TextStyle(fontSize: 18.0, color: Colors.white),
-                ),
-              ),
-              width: 100.0,
-              height: 50.0,
-              decoration: BoxDecoration(
-                color: _isTapped ? Colors.lightGreen[700] : Colors.grey[600],
-              ),
+    return Form(
+      child: Column(
+        children: <Widget>[
+          // TextFeild
+          TextFormField(
+            decoration: InputDecoration(
+              hintText: 'Insert Text Here',
+              border: OutlineInputBorder(),
+              contentPadding: EdgeInsets.all(20.0),
             ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please Enter Text';
+              }
+              // This is the actual return that will use 'value'
+              return null;
+            },
           ),
-          // THis is the picture
-          SizedBox(
-            width: 300.0,
-            height: 200.0,
-            child: Container(
-                child: _isTapped
-                    ? Image.asset('still_art/test_img.jpg')
-                    : Text('Tap the button')),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: ElevatedButton(
+              onPressed: () {
+                // Validate will return true if form is valid
+                if (_formKey.currentState!.validate()) {
+                  // form is invalid
+                  //Proccess data
+                }
+              },
+              child: const Text('Submit'),
+            ),
           ),
         ],
       ),
