@@ -11,5 +11,5 @@ List sideMenuItems = [
   OverViewPageRoute,
   YouTubePageRoute,
   MusicPageRoute,
-  AuthenticationPageRoute,
+  AuthenticationPageRoute
 ];
