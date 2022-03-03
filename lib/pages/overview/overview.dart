@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soundspace/widgets/custom_text.dart';
 
-
 class ImageHandler extends StatefulWidget {
   const ImageHandler({Key? key}) : super(key: key);
 
