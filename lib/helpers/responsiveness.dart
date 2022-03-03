@@ -6,6 +6,8 @@ const int mediumScreenSize = 768;
 const int smallScreenSize = 360;
 const int customScreenSize = 1100;
 
+
+// adaptive display framework
 class ResponsiveWidget extends StatelessWidget {
   final Widget largeScreen;
   final Widget? mediumScreen;

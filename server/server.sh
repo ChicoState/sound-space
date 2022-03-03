@@ -1,4 +1,4 @@
-
+# This is how our website is running in docker
 PORT=8000
 
 # fuser -k 8000/tcp
