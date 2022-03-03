@@ -47,7 +47,7 @@ class _ImageHandlerState extends State<ImageHandler> {
             ),
           ),
         ],
-      ),
+      ), // Column
     );
   }
 }
