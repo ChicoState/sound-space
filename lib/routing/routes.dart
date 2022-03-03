@@ -7,6 +7,7 @@ const AuthenticationPageRoute = "Authentication";
 const ArtPageRoute = "Art";
 
 // These are the routes displayed in our right drawer
+
 List sideMenuItems = [
   OverViewPageRoute,
   YouTubePageRoute,
