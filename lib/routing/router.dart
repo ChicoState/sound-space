@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:soundspace/pages/music/music.dart';
 import 'package:soundspace/pages/overview/overview.dart';
 import 'package:soundspace/pages/youtube/youtube.dart';
+import 'package:soundspace/pages/trending/trending.dart';
 import 'package:soundspace/routing/routes.dart';
-
 
 // possible routes to widgets
 
@@ -11,6 +11,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case OverViewPageRoute:
       return _getPageRoute(OverViewPage());
+    case TrendingPageRoute:
+      return _getPageRoute(TrendingPage());
     case YouTubePageRoute:
       return _getPageRoute(YouTubePage());
     case MusicPageRoute:

@@ -24,6 +24,8 @@ class MenuController extends GetxController {
     switch (itemName) {
       case OverViewPageRoute:
         return _customIcon(Icons.home, itemName);
+      case TrendingPageRoute:
+        return _customIcon(Icons.trending_up_outlined, itemName);
       case YouTubePageRoute:
         return _customIcon(Icons.youtube_searched_for_outlined, itemName);
       case MusicPageRoute:
