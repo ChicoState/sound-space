@@ -20,7 +20,8 @@ class _ImageHandlerState extends State<ImageHandler> {
   CollectionReference urls = FirebaseFirestore.instance.collection(
       'art-urls'); // instance of our firestore database that should be type safe
 
-  String url = ""; // this will act as our collected url
+  final _urlController =
+      TextEditingController(); // contains input of controlled text field
 
   //url validator
   String validateUrl(String? value) {
@@ -47,13 +48,14 @@ class _ImageHandlerState extends State<ImageHandler> {
         children: <Widget>[
           // TextFeild
           TextFormField(
+            controller: _urlController,
             decoration: InputDecoration(
               hintText: 'Insert Text Here',
               border: OutlineInputBorder(),
               contentPadding: EdgeInsets.all(20.0),
             ),
             validator: (String? value) {
-              return (url = validateUrl(value));
+              return validateUrl(value);
             },
           ),
           Padding(
@@ -62,7 +64,9 @@ class _ImageHandlerState extends State<ImageHandler> {
               child: const Text('Submit'),
               onPressed: () {
                 // UNVALIDATED, THIS DATA IS NOT CHECKED
-                addUrl(url);
+                String _url =
+                    _urlController.text; // this will act as our collected url
+                addUrl(_url);
               },
             ),
           ),
