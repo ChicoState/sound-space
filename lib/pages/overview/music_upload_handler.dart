@@ -35,9 +35,13 @@ class _ImageHandlerState extends State<ImageHandler> {
   final _nameController = TextEditingController();
 
   Future<void> addUrl(String url, String name) {
+    // firebase fxn for writing new documents to a collection
     return urls
+        // all documents must be added in json format "key : value"
         .add({'name': name, 'url': url})
+        // .then is for any console output mostly for testing
         .then((value) => print("Added Art( name: $name , url: $url )"))
+        // catch any possible errors
         .catchError((e) => print("ADDING ART ERROR: $e"));
   }
 
@@ -46,7 +50,7 @@ class _ImageHandlerState extends State<ImageHandler> {
     return Form(
       child: Column(
         children: <Widget>[
-          // TextFeild
+          // TextFeild for url
           TextFormField(
               controller: _urlController,
               decoration: InputDecoration(
@@ -55,19 +59,22 @@ class _ImageHandlerState extends State<ImageHandler> {
                 contentPadding: EdgeInsets.all(20.0),
               ),
               validator: (val) {
+                //validate url
                 if (validateUrl(val)) {
                   return null;
                 }
                 return 'Please enter a valid url';
               }),
+          // TextFeild for name
           TextFormField(
-              controller: _nameController,
+              controller: _nameController, //  field handler
               decoration: InputDecoration(
                 hintText: 'Insert name Here',
                 border: OutlineInputBorder(),
                 contentPadding: EdgeInsets.all(20.0),
               ),
               validator: (val) {
+                //make sure name is not null
                 if (val != null) {
                   return null;
                 }
@@ -78,7 +85,7 @@ class _ImageHandlerState extends State<ImageHandler> {
             child: ElevatedButton(
               child: const Text('Submit'),
               onPressed: () {
-                // UNVALIDATED, THIS DATA IS NOT CHECKED
+                // validates that url is correct before ultimately adding anything to db
                 if (validateUrl(_urlController.text)) {
                   // passed
                   String _url =
@@ -87,10 +94,15 @@ class _ImageHandlerState extends State<ImageHandler> {
                   addUrl(_url, _name);
                   Scaffold.of(context)
                       .showSnackBar(SnackBar(content: Text('Processing data')));
+                } else {
+                  // failed
+                  // msg for user to change entered data
+                  Scaffold.of(context).showSnackBar(
+                      SnackBar(content: Text('Please enter valid data')));
                 }
-                // failed
-                Scaffold.of(context).showSnackBar(
-                    SnackBar(content: Text('Please enter valid data')));
+                // clears text fields no matter the case
+                _urlController.clear();
+                _nameController.clear();
               },
             ),
           ),
