@@ -1,7 +1,7 @@
 // List all necessary routes for page
 
-const OverViewPageRoute = "Overview";
-const YouTubePageRoute = "YouTube";
+const HomePageRoute = "Home";
+const UploadPageRoute = "Upload";
 const MusicPageRoute = "Music";
 const AuthenticationPageRoute = "Authentication";
 const ArtPageRoute = "Art";
@@ -10,9 +10,9 @@ const TrendingPageRoute = "Trending";
 // These are the routes displayed in our right drawer
 
 List sideMenuItems = [
-  OverViewPageRoute,
+  HomePageRoute,
   TrendingPageRoute,
-  YouTubePageRoute,
   MusicPageRoute,
+  UploadPageRoute,
   AuthenticationPageRoute
 ];

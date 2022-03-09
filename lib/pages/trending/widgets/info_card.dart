@@ -21,15 +21,17 @@ class InfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: InkWell(
-        onTap: onTap,
         child: Container(
             height: 400,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-                color: Colors.white,
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.purple.shade100, Colors.blue.shade100]),
                 boxShadow: [
                   BoxShadow(
-                      offset: Offset(0, 6),
+                      offset: const Offset(0, 6),
                       color: lightGrey.withOpacity(0.1),
                       blurRadius: 12)
                 ],
@@ -45,9 +47,8 @@ class InfoCard extends StatelessWidget {
                   text: TextSpan(children: [
                     TextSpan(
                         text: "$title\n",
-                        style: TextStyle(
-                            fontSize: 30,
-                            color: isActive ? active : lightGrey)),
+                        style: const TextStyle(
+                            fontSize: 35, color: Colors.black87)),
                   ])),
               Expanded(
                   child: ListView.builder(
