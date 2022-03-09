@@ -1,6 +1,9 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:soundspace/constants/style.dart';
 import 'package:soundspace/widgets/custom_text.dart';
 
+/*
 class ImageHandler extends StatefulWidget {
   const ImageHandler({Key? key}) : super(key: key);
 
@@ -51,12 +54,37 @@ class _ImageHandlerState extends State<ImageHandler> {
     );
   }
 }
+*/
 
-class OverViewPage extends StatelessWidget {
-  OverViewPage({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ImageHandler();
+    double _width = MediaQuery.of(context).size.width;
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(width: _width / 16),
+        const CustomText(
+            text: "SoundSpace", size: 100, weight: FontWeight.bold),
+        SizedBox(width: _width / 16),
+        Container(
+            child: AnimatedTextKit(animatedTexts: [
+          RotateAnimatedText("Discover",
+              textStyle: const TextStyle(fontSize: 50, color: Colors.blue),
+              duration: const Duration(milliseconds: 2000)),
+          RotateAnimatedText("Upload",
+              textStyle: const TextStyle(fontSize: 50, color: Colors.purple),
+              duration: const Duration(milliseconds: 2000)),
+          RotateAnimatedText("Compete",
+              textStyle: const TextStyle(fontSize: 50, color: Colors.blue),
+              duration: const Duration(milliseconds: 2000)),
+          RotateAnimatedText("Enjoy",
+              textStyle: const TextStyle(fontSize: 50, color: Colors.purple),
+              duration: const Duration(milliseconds: 2000)),
+        ], repeatForever: true))
+      ],
+    );
   }
 }

@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:soundspace/pages/music/music.dart';
-import 'package:soundspace/pages/overview/overview.dart';
-import 'package:soundspace/pages/youtube/youtube.dart';
+import 'package:soundspace/pages/home/home.dart';
+import 'package:soundspace/pages/upload/upload.dart';
+import 'package:soundspace/pages/trending/trending.dart';
 import 'package:soundspace/routing/routes.dart';
-
 
 // possible routes to widgets
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
-    case OverViewPageRoute:
-      return _getPageRoute(OverViewPage());
-    case YouTubePageRoute:
-      return _getPageRoute(YouTubePage());
+    case HomePageRoute:
+      return _getPageRoute(HomePage());
+    case TrendingPageRoute:
+      return _getPageRoute(TrendingPage());
+    case UploadPageRoute:
+      return _getPageRoute(UploadPage());
     case MusicPageRoute:
       return _getPageRoute(MusicPage());
     default:
-      return _getPageRoute(OverViewPage());
+      return _getPageRoute(HomePage());
   }
 }
 
