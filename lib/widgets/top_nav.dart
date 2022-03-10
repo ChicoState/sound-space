@@ -25,9 +25,6 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                 size: 20,
                 weight: FontWeight.bold)),
         Expanded(child: Container()),
-        IconButton(
-            icon: Icon(Icons.settings, color: dark.withOpacity(.7)),
-            onPressed: () {}),
         Stack(
           children: [
             IconButton(

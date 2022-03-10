@@ -3,7 +3,7 @@
 const HomePageRoute = "Home";
 const UploadPageRoute = "Upload";
 const MusicPageRoute = "Music";
-const AuthenticationPageRoute = "Authentication";
+const AccountPageRoute = "Account";
 const ArtPageRoute = "Art";
 const TrendingPageRoute = "Trending";
 
@@ -14,5 +14,5 @@ List sideMenuItems = [
   TrendingPageRoute,
   MusicPageRoute,
   UploadPageRoute,
-  AuthenticationPageRoute
+  AccountPageRoute
 ];

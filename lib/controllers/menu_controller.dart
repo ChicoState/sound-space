@@ -30,7 +30,7 @@ class MenuController extends GetxController {
         return _customIcon(Icons.file_upload_outlined, itemName);
       case MusicPageRoute:
         return _customIcon(Icons.music_note_outlined, itemName);
-      case AuthenticationPageRoute:
+      case AccountPageRoute:
         return _customIcon(Icons.people_alt_outlined, itemName);
       default:
         return _customIcon(Icons.exit_to_app, itemName);
