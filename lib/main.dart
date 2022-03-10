@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:soundspace/constants/style.dart';
 import 'package:soundspace/controllers/menu_controller.dart';
 import 'package:soundspace/controllers/navigation_controller.dart';
 import 'package:soundspace/layout.dart';
+import 'package:soundspace/routing/routes.dart';
 
 void main() {
   Get.put(MenuController());
@@ -17,10 +19,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialRoute: HomePageRoute,
       debugShowCheckedModeBanner: false,
       title: "SoundScape",
       theme: ThemeData(
-          scaffoldBackgroundColor: Colors.white,
+          scaffoldBackgroundColor: light,
           textTheme: GoogleFonts.mulishTextTheme(Theme.of(context).textTheme)
               .apply(bodyColor: Colors.black),
           pageTransitionsTheme: PageTransitionsTheme(builders: {
