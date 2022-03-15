@@ -15,7 +15,7 @@ import 'firebase_options.dart';
 
 //added imports below - not sure how much will end up being necessary
 //import 'pages/account/authentication.dart';
-import 'pages/account/account.dart';
+import 'pages/account/applicationState.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
