@@ -45,9 +45,9 @@ class _EmailFormState extends State<EmailForm> {
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 16.0, horizontal: 30),
-                      child: SideMenuItem(
-                        itemName: 'NEXT',
-                        onTap: () async {
+                      child: TextButton(
+                        child: const Text('NEXT'),
+                        onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             widget.callback(_controller.text);
                           }
@@ -159,9 +159,8 @@ class _RegisterFormState extends State<RegisterForm> {
                         child: const Text('CANCEL'),
                       ),
                       const SizedBox(width: 16),
-                      SideMenuItem(
-                        itemName: 'SAVE',
-                        onTap: () {
+                      TextButton(
+                        onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             widget.registerAccount(
                               _emailController.text,
@@ -170,6 +169,7 @@ class _RegisterFormState extends State<RegisterForm> {
                             );
                           }
                         },
+                        child: const Text('SAVE'),
                       ),
                       const SizedBox(width: 30),
                     ],
@@ -255,9 +255,8 @@ class _PasswordFormState extends State<PasswordForm> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       const SizedBox(width: 16),
-                      SideMenuItem(
-                        itemName: 'SIGN IN',
-                        onTap: () {
+                      TextButton(
+                        onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             widget.login(
                               _emailController.text,
@@ -265,6 +264,7 @@ class _PasswordFormState extends State<PasswordForm> {
                             );
                           }
                         },
+                        child: const Text('SIGN IN'),
                       ),
                       const SizedBox(width: 30),
                     ],

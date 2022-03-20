@@ -35,8 +35,8 @@ class ApplicationState extends ChangeNotifier {
   ApplicationLoginState _loginState = ApplicationLoginState.loggedOut;
   ApplicationLoginState get loginState => _loginState;
 
-  String? _email;
-  String? get email => _email;
+  String _email = ''; //nullable edit here (?, no =)
+  String get email => _email; //nullable edit here (?)
 
   //getting email address is always first step to login flow
   void startLoginFlow() {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soundspace/widgets/side_menu_item.dart';
 import 'authenticationHelpers.dart';
 
 //this enum is just a state tracker - it tells certain processes where we are in the login process
@@ -28,8 +27,7 @@ class Authentication extends StatelessWidget {
 
   //type of required vars
   final ApplicationLoginState loginState;
-  //email must be nullable in the case where the user is logged out
-  final String? email;
+  final String email; //nullable edit here (?)
   final void Function() startLoginFlow;
   final void Function(
     String email,
@@ -58,9 +56,9 @@ class Authentication extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 24, bottom: 8),
-              child: SideMenuItem(
-                  itemName: 'Log In/Sign Up',
-                  onTap: () {
+              child: TextButton(
+                  child: const Text('Log In/Sign Up'),
+                  onPressed: () {
                     startLoginFlow();
                   }),
             ),
@@ -74,7 +72,7 @@ class Authentication extends StatelessWidget {
       case ApplicationLoginState.password:
         //need password, return relevant form
         return PasswordForm(
-          email: email!,
+          email: email, //nullable edit here (!)
           login: (email, password) {
             signInWithEmailAndPassword(email, password,
                 (e) => _showErrorDialog(context, 'Failed to sign in', e));
@@ -83,7 +81,7 @@ class Authentication extends StatelessWidget {
       case ApplicationLoginState.register:
         //signup form has email, password, and name
         return RegisterForm(
-          email: email!,
+          email: email, //nullable edit here (!)
           cancel: () {
             cancelRegistration();
           },
@@ -106,9 +104,9 @@ class Authentication extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 24, bottom: 8),
-              child: SideMenuItem(
-                itemName: 'LOGOUT',
-                onTap: () {
+              child: TextButton(
+                child: const Text('LOGOUT'),
+                onPressed: () {
                   signOut();
                 },
               ),
@@ -144,9 +142,9 @@ class Authentication extends StatelessWidget {
             ),
           ),
           actions: <Widget>[
-            SideMenuItem(
-              itemName: 'OK',
-              onTap: () {
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
