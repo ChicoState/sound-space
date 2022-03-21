@@ -7,15 +7,12 @@ class TrendingCardsLarge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
-    return Row(
-      children: [
-        InfoCard(title: "Music", topColor: Colors.green, onTap: () {}),
-        SizedBox(width: _width / 64),
-        InfoCard(title: "Videos", topColor: Colors.red, onTap: () {}),
-        SizedBox(width: _width / 64),
-        InfoCard(title: "Art", topColor: Colors.blue, onTap: () {}),
-        SizedBox(width: _width / 64),
-      ],
-    );
+    return Row(children: [
+      InfoCard(title: "Music", topColor: Colors.green, onTap: () {}),
+      SizedBox(width: _width / 64),
+      InfoCard(title: "Videos", topColor: Colors.red, onTap: () {}),
+      SizedBox(width: _width / 64),
+      InfoCard(title: "Art", topColor: Colors.blue, onTap: () {})
+    ]);
   }
 }

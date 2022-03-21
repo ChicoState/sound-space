@@ -6,6 +6,7 @@ import 'package:soundspace/constants/style.dart';
 import 'package:soundspace/controllers/menu_controller.dart';
 import 'package:soundspace/controllers/navigation_controller.dart';
 import 'package:soundspace/layout.dart';
+import 'package:soundspace/pages/error/error_page.dart';
 import 'package:soundspace/routing/routes.dart';
 
 // firebase deps
@@ -44,6 +45,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       initialRoute: HomePageRoute,
+      unknownRoute: GetPage(
+          name: "/not-found",
+          page: () => PageNotFound(),
+          transition: Transition.fadeIn),
+      getPages: [GetPage(name: rootRoute, page: () => SiteLayout())],
       debugShowCheckedModeBanner: false,
       title: "SoundScape",
       theme: ThemeData(
@@ -55,7 +61,6 @@ class MyApp extends StatelessWidget {
             TargetPlatform.android: FadeUpwardsPageTransitionsBuilder()
           }),
           primaryColor: Colors.blue),
-      home: SiteLayout(),
     );
   }
 }

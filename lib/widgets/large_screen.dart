@@ -9,12 +9,8 @@ class LargeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(child: const SideMenu()),
-        Expanded(
-            flex: 5,
-            child: Container(
-                // padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                child: localNavigator()))
+        const Expanded(child: SideMenu()),
+        Expanded(flex: 5, child: Container(child: localNavigator()))
       ],
     );
   }

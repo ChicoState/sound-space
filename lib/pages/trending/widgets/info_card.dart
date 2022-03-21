@@ -22,13 +22,13 @@ class InfoCard extends StatelessWidget {
     return Expanded(
       child: InkWell(
         child: Container(
-            height: 400,
+            height: MediaQuery.of(context).size.height * 0.66,
             alignment: Alignment.center,
             decoration: BoxDecoration(
                 gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [Colors.purple.shade100, Colors.blue.shade100]),
+                    colors: [Colors.grey.shade50, Colors.grey.shade200]),
                 boxShadow: [
                   BoxShadow(
                       offset: const Offset(0, 6),
@@ -37,11 +37,7 @@ class InfoCard extends StatelessWidget {
                 ],
                 borderRadius: BorderRadius.circular(8)),
             child: Column(children: [
-              Row(
-                children: [
-                  Expanded(child: Container(color: topColor, height: 5))
-                ],
-              ),
+              const SizedBox(height: 20),
               RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(children: [

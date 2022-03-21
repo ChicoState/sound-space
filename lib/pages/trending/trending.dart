@@ -11,20 +11,32 @@ class TrendingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-            child: ListView(children: [
-          if (ResponsiveWidget.isLargeScreen(context) ||
-              ResponsiveWidget.isMediumScreen(context))
-            if (ResponsiveWidget.isCustomSize(context))
-              const TrendingCardsMedium()
-            else
-              const TrendingCardsLarge()
-          else
-            const TrendingCardsSmall()
-        ]))
-      ],
-    );
+    return Scaffold(
+        body: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [Colors.purple.shade100, Colors.blue.shade100]),
+            ),
+            child: Padding(
+                padding: EdgeInsets.all(12),
+                child: Column(
+                  children: [
+                    Expanded(
+                        child: ListView(children: [
+                      if (ResponsiveWidget.isLargeScreen(context) ||
+                          ResponsiveWidget.isMediumScreen(context))
+                        if (ResponsiveWidget.isCustomSize(context))
+                          const TrendingCardsMedium()
+                        else
+                          const TrendingCardsLarge()
+                      else
+                        const TrendingCardsSmall()
+                    ]))
+                  ],
+                ))));
   }
 }

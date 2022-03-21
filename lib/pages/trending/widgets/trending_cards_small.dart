@@ -1,28 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:soundspace/pages/trending/widgets/info_card_small.dart';
+import 'package:soundspace/pages/trending/widgets/info_card.dart';
 
 class TrendingCardsSmall extends StatelessWidget {
   const TrendingCardsSmall({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double _width = MediaQuery.of(context).size.width;
     return Container(
-        height: 400,
-        child: Column(
-          children: [
-            InfoCardSmall(
-                title: "Music",
-                value: "Add songs here",
-                isActive: true,
-                onTap: () {}),
-            SizedBox(width: _width / 64),
-            InfoCardSmall(
-                title: "Videos", value: "Add videos here", onTap: () {}),
-            SizedBox(width: _width / 64),
-            InfoCardSmall(title: "Art", value: "Add here here", onTap: () {}),
-            SizedBox(width: _width / 64),
-          ],
-        ));
+      height: MediaQuery.of(context).size.height,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          InfoCard(title: "Music", topColor: Colors.green, onTap: () {}),
+          const SizedBox(height: 12),
+          InfoCard(title: "Videos", topColor: Colors.red, onTap: () {}),
+          const SizedBox(height: 12),
+          InfoCard(title: "Art", topColor: Colors.blue, onTap: () {})
+        ],
+      ),
+    );
   }
 }
