@@ -16,9 +16,9 @@ class _MusicFormState extends State<MusicForm> {
     return Form(
       child: Column(
         children: <Widget>[
-          // TextFeild
+          // TextField
           TextFormField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: 'Music URL',
               border: OutlineInputBorder(),
               contentPadding: EdgeInsets.all(20.0),
