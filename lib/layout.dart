@@ -4,6 +4,7 @@ import 'package:soundspace/widgets/large_screen.dart';
 import 'package:soundspace/widgets/side_menu.dart';
 import 'package:soundspace/widgets/small_screen.dart';
 
+
 class SiteLayout extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 

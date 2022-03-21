@@ -4,6 +4,6 @@
 # DEVELOPMENT
 
 ## to use docker
-- view websight: docker-compose up -d and go to url localhost:8000
-- stop contanor: docker-compose down
-- dm cli deprocated
+- view website: docker-compose up -d and go to url localhost:8000
+- stop container: docker-compose down
+- dm cli deprecated

@@ -4,6 +4,7 @@ import 'package:soundspace/widgets/custom_text.dart';
 // firebase deps
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ImageHandler extends StatefulWidget {
   const ImageHandler({Key? key}) : super(key: key);
@@ -36,9 +37,14 @@ class _ImageHandlerState extends State<ImageHandler> {
 
   Future<void> addUrl(String url, String name) {
     // firebase fxn for writing new documents to a collection
+    var user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      //this *should* never run because of the if/else in upload.dart
+      print("ERROR: image_handler upload - User should not be null");
+    }
     return urls
         // all documents must be added in json format "key : value"
-        .add({'name': name, 'url': url})
+        .add({'name': name, 'url': url, 'user': user.hashCode})
         // .then is for any console output mostly for testing
         .then((value) => print("Added Art( name: $name , url: $url )"))
         // catch any possible errors
@@ -53,7 +59,7 @@ class _ImageHandlerState extends State<ImageHandler> {
           // TextFeild for url
           TextFormField(
               controller: _urlController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Insert url Here',
                 border: OutlineInputBorder(),
                 contentPadding: EdgeInsets.all(20.0),
@@ -68,7 +74,7 @@ class _ImageHandlerState extends State<ImageHandler> {
           // TextFeild for name
           TextFormField(
               controller: _nameController, //  field handler
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Insert name Here',
                 border: OutlineInputBorder(),
                 contentPadding: EdgeInsets.all(20.0),
