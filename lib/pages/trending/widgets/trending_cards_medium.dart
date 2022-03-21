@@ -15,12 +15,11 @@ class TrendingCardsMedium extends StatelessWidget {
           InfoCard(title: "Videos", topColor: Colors.red, onTap: () {}),
         ],
       ),
-      SizedBox(height: 16),
+      const SizedBox(height: 16),
       Row(
         children: [
           SizedBox(width: _width / 64),
-          InfoCard(title: "Art", topColor: Colors.blue, onTap: () {}),
-          SizedBox(width: _width / 64),
+          InfoCard(title: "Art", topColor: Colors.blue, onTap: () {})
         ],
       )
     ]);

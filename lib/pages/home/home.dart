@@ -1,6 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:soundspace/constants/style.dart';
 import 'package:soundspace/pages/account/account.dart';
 import 'package:soundspace/widgets/custom_text.dart';
 
@@ -9,72 +8,102 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _width = MediaQuery.of(context).size.width;
+    double _width = MediaQuery.of(context).size.width; // page width
+    double _height = MediaQuery.of(context).size.height; // page height
     return Scaffold(
         body: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
+            // background color of homepage
+            height: _height,
+            width: _width,
             decoration: BoxDecoration(
               gradient: LinearGradient(
+                  // define gradient colors (top left to bottom right)
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [Colors.purple.shade100, Colors.blue.shade100]),
-              // borderRadius: BorderRadius.circular(8)
             ),
             child: Row(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisSize: MainAxisSize.min, // center text on homepage
               children: [
-                SizedBox(width: _width / 16),
+                SizedBox(width: _width / 16), // small spacing on left side
                 Container(
                   child: Column(
+                      // define column for "Welcome to SoundSpace" header
                       mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment:
+                          CrossAxisAlignment.start, // left align text
                       children: [
-                        const CustomText(
-                            text: "Welcome to",
-                            size: 35,
-                            color: Color.fromARGB(255, 77, 77, 77)),
-                        const CustomText(
-                            text: "SoundSpace",
-                            size: 100,
-                            weight: FontWeight.bold)
+                        Container(
+                            width: _width / 6, // width is 1/6 page
+                            child: const FittedBox(
+                              // dynamic sizing of text
+                              fit: BoxFit.fitWidth, // fit to container width
+                              child: Text(
+                                "Welcome to",
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 77, 77, 77)),
+                              ),
+                            )),
+                        Container(
+                            width: _width / 2, // width is half page
+                            child: const FittedBox(
+                              // dynamic sizing of text
+                              fit: BoxFit.fitWidth, // fit to container width
+                              child: Text(
+                                "SoundSpace",
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ))
                       ]),
                 ),
-                SizedBox(width: _width / 16),
+                SizedBox(width: _width / 16), // small spacing between text
                 Container(
-                    child: AnimatedTextKit(animatedTexts: [
-                  RotateAnimatedText("Discover",
-                      textStyle: const TextStyle(
-                          fontSize: 42, color: Color.fromARGB(255, 77, 77, 77)),
-                      duration: const Duration(milliseconds: 2000)),
-                  RotateAnimatedText("Upload",
-                      textStyle: const TextStyle(
-                          fontSize: 42, color: Color.fromARGB(255, 77, 77, 77)),
-                      duration: const Duration(milliseconds: 2000)),
-                  RotateAnimatedText("Compete",
-                      textStyle: const TextStyle(
-                          fontSize: 42, color: Color.fromARGB(255, 77, 77, 77)),
-                      duration: const Duration(milliseconds: 2000)),
-                  RotateAnimatedText("Enjoy",
-                      textStyle: const TextStyle(
-                          fontSize: 42, color: Color.fromARGB(255, 77, 77, 77)),
-                      duration: const Duration(milliseconds: 2000)),
-                ], repeatForever: true))
+                    width: _width / 8, // width is 1/8 of page
+                    child: FittedBox(
+                      // dynamic sizing of text
+                      fit: BoxFit.fitWidth, // fit to width of container
+                      child: AnimatedTextKit(animatedTexts: [
+                        // define animated text
+                        RotateAnimatedText("Discover",
+                            textStyle: const TextStyle(
+                                color: Color.fromARGB(255, 77, 77, 77)),
+                            duration: const Duration(milliseconds: 2000)),
+                        RotateAnimatedText("Upload",
+                            textStyle: const TextStyle(
+                                color: Color.fromARGB(255, 77, 77, 77)),
+                            duration: const Duration(milliseconds: 2000)),
+                        RotateAnimatedText("Compete",
+                            textStyle: const TextStyle(
+                                color: Color.fromARGB(255, 77, 77, 77)),
+                            duration: const Duration(milliseconds: 2000)),
+                        RotateAnimatedText("Enjoy",
+                            textStyle: const TextStyle(
+                                color: Color.fromARGB(255, 77, 77, 77)),
+                            duration: const Duration(milliseconds: 2000)),
+                      ], repeatForever: true),
+                    )),
+                SizedBox(width: _width / 16), // small spacing on right side
               ],
             )),
         floatingActionButton: Padding(
-            padding: const EdgeInsets.all(8),
+            // define login button
+            padding: const EdgeInsets.all(8), // add small padding
             child: FloatingActionButton.extended(
                 onPressed: () {
+                  // when pressed, navigate to account page (will need to update page links)
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => AccountPage()));
                 },
-                label: const CustomText(text: "Log In", size: 14),
+                label:
+                    const CustomText(text: "Log In", size: 14), // define text
                 icon: const Icon(
-                  Icons.people_alt_outlined,
+                  Icons.people_alt_outlined, // define icon
                   color: Colors.black,
                 ),
                 backgroundColor: Colors.white)),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endTop);
+        floatingActionButtonLocation: FloatingActionButtonLocation
+            .endTop); // set location of button (top right corner)
   }
 }

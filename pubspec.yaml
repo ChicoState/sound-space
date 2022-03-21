@@ -33,6 +33,8 @@ dependencies:
   get: ^4.6.1
   google_fonts: ^2.3.1
   animated_text_kit: ^4.2.1
+  dropdown_button2: ^1.2.2
+  responsive_flutter: ^0.0.4
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -69,6 +71,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/still_art/ # art without animation
+    - assets/images/
   
   # image sources:
   # test_img: https://unsplash.com/photos/eybM9n4yrpE
