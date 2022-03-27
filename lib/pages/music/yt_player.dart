@@ -4,9 +4,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
-
 // Using Youtube Player Iframe project for easier use of
 // official iFrame Player API
+
+// firebase deps
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class YtPlayer extends StatefulWidget {
   @override
@@ -15,24 +19,34 @@ class YtPlayer extends StatefulWidget {
 
 class _YtPlayerState extends State<YtPlayer> {
   late YoutubePlayerController _controller;
+  List<String> list = [];
+
+  void getData() async {
+    CollectionReference music = FirebaseFirestore.instance.collection('MUSIC');
+    music
+        .where('name', isEqualTo: 'Floating City Chill Lofi Beats')
+        .get()
+        .then((QuerySnapshot qs) {
+      qs.docs.forEach((doc) {
+        print(doc['url']);
+      });
+    });
+  }
 
   @override
   void initState() {
+    // initial state of video player
     super.initState();
+    getData();
     _controller = YoutubePlayerController(
-      initialVideoId: 'tcodrIK2P_I',
+      // video player settings
+      // https://www.youtube.com/watch?v=5qap5aO4i9A
+      // https://www.youtube.com/watch?v=esDlUtMQmeU
+      // this is the video id            x->
+      // everything aftter the '='
+      initialVideoId: '5qap5aO4i9A',
       params: const YoutubePlayerParams(
-        playlist: [
-          'nPt8bK2gbaU',
-          'K18cpp_-gP8',
-          'iLnmTe5Q2Qw',
-          '_WoCV4c6XOE',
-          'KmzdUe0RSJo',
-          '6jZDSSZZxjQ',
-          'p2lYr3vM_1w',
-          '7QUtEmBT_-w',
-          '34_PXCzGw1M',
-        ],
+        playlist: [],
         startAt: const Duration(minutes: 1, seconds: 36),
         showControls: false,
         showFullscreenButton: true,
@@ -143,9 +157,8 @@ class Controls extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('menu'),
-          Text('volume'),
-          Text('meta data'),
+          Text('user'),
+          Text('hi there'),
         ],
       ),
     );
