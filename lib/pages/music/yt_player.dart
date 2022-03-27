@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
+// Using Youtube Player Iframe project for easier use of
+// official iFrame Player API
+
 class YtPlayer extends StatefulWidget {
   @override
   _YtPlayerState createState() => _YtPlayerState();
