@@ -20,24 +20,13 @@ class YtPlayer extends StatefulWidget {
 class _YtPlayerState extends State<YtPlayer> {
   late YoutubePlayerController _controller;
   List<String> list = [];
-
-  void getData() async {
-    CollectionReference music = FirebaseFirestore.instance.collection('MUSIC');
-    music
-        .where('name', isEqualTo: 'Floating City Chill Lofi Beats')
-        .get()
-        .then((QuerySnapshot qs) {
-      qs.docs.forEach((doc) {
-        print(doc['url']);
-      });
-    });
-  }
+  String url = "";
 
   @override
   void initState() {
     // initial state of video player
     super.initState();
-    getData();
+    print(url);
     _controller = YoutubePlayerController(
       // video player settings
       // https://www.youtube.com/watch?v=5qap5aO4i9A
