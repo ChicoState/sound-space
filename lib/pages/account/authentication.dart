@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'authenticationHelpers.dart';
 
 //this enum is just a state tracker - it tells certain processes where we are in the login process
-//I don't see any use in applying types to it, but maybe I'm missing your point?
-//because the same effect could be reached with an integer 0-4 where 0=loggedOut, 1=emailAddress, etc.
 enum ApplicationLoginState {
   loggedOut,
   emailAddress,
