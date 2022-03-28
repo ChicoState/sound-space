@@ -19,14 +19,11 @@ class YtPlayer extends StatefulWidget {
 
 class _YtPlayerState extends State<YtPlayer> {
   late YoutubePlayerController _controller;
-  List<String> list = [];
-  String url = "";
 
   @override
   void initState() {
     // initial state of video player
     super.initState();
-    print(url);
     _controller = YoutubePlayerController(
       // video player settings
       // https://www.youtube.com/watch?v=5qap5aO4i9A
@@ -35,7 +32,7 @@ class _YtPlayerState extends State<YtPlayer> {
       // everything aftter the '='
       initialVideoId: '5qap5aO4i9A',
       params: const YoutubePlayerParams(
-        playlist: [],
+        playlist: [], // takes a list of video id's
         startAt: const Duration(minutes: 1, seconds: 36),
         showControls: false,
         showFullscreenButton: true,
@@ -71,8 +68,9 @@ class _YtPlayerState extends State<YtPlayer> {
                 children: [
                   const Expanded(child: player),
                   const SizedBox(
-                    width: 500,
+                    width: 400,
                     child: SingleChildScrollView(
+                      // custom controls for video currently disabled
                       child: Controls(),
                     ),
                   ),
@@ -82,6 +80,7 @@ class _YtPlayerState extends State<YtPlayer> {
             return ListView(
               children: [
                 Stack(
+                  // this stack effects the video player itself
                   children: [
                     player,
                     Positioned.fill(
@@ -138,6 +137,7 @@ class _YtPlayerState extends State<YtPlayer> {
 class Controls extends StatelessWidget {
   ///
   const Controls();
+  // all custom controls for the player go in here
 
   @override
   Widget build(BuildContext context) {
