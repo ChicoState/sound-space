@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-//import 'package:soundspace/widgets/custom_text.dart';
 import 'package:provider/provider.dart';
 import 'authentication.dart';
 import 'applicationState.dart';
-//import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'package:soundspace/firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'url_info.dart';
 
