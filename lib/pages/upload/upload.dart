@@ -32,7 +32,7 @@ class UploadPage extends StatelessWidget {
                       if (ResponsiveWidget.isSmallScreen(context)) {
                         Get.back();
                       }
-                      navigationController.navigateTo("Account");
+                      navigationController.navigateTo("/account");
                     },
                     child: const Text('Log In'),
                   )
