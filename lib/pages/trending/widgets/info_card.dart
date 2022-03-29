@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:soundspace/constants/style.dart';
-import 'package:soundspace/constants/music_list.dart';
+//import 'package:soundspace/constants/music_list.dart'; //deprecated, but maybe keep as example of supported image links
 import 'package:soundspace/pages/trending/widgets/components/custom_list_tile.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+/*  Note from Owen North:
+ *    The 'NetworkImage' widget used to render images (called in customListTile, data here @ line 76) is picky
+ *    Images I had been using from imgur did not work - it has to be a web-hosted .png or similar
+ *    Not a big deal at the moment, but I wanted to make a note of it
+ *    So if you're doing something and images aren't loading, make sure it's a supported filetype
+ */
 
 class InfoCard extends StatelessWidget {
   final String title;
@@ -47,13 +55,29 @@ class InfoCard extends StatelessWidget {
                             fontSize: 35, color: Colors.black87)),
                   ])),
               Expanded(
-                  child: ListView.builder(
-                      itemCount: musicList.length,
-                      itemBuilder: ((context, index) => customListTile(
-                          onTap: () {},
-                          title: musicList[index]['title'],
-                          singer: musicList[index]['singer'],
-                          cover: musicList[index]['coverUrl'])))),
+                  //fetch all 'art-url' documents
+                  child: FutureBuilder<QuerySnapshot>(
+                      future: FirebaseFirestore.instance
+                          .collection('art-urls')
+                          .get(),
+                      //convert documents into a list
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          final List<DocumentSnapshot> documents =
+                              snapshot.data!.docs;
+                          //pass data to customListTile
+                          return ListView.builder(
+                              itemCount: documents.length,
+                              itemBuilder: ((context, index) => customListTile(
+                                  onTap: () {},
+                                  title: documents[index]['name'],
+                                  singer: documents[index]
+                                      ['user'], //email for now
+                                  cover: documents[index]['url'])));
+                        } else {
+                          return const Text("Error");
+                        }
+                      })),
               Container()
             ])),
       ),

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:soundspace/widgets/custom_text.dart';
 
 // firebase deps
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -44,7 +42,7 @@ class _ImageHandlerState extends State<ImageHandler> {
     }
     return urls
         // all documents must be added in json format "key : value"
-        .add({'name': name, 'url': url, 'user': user.hashCode})
+        .add({'name': name, 'url': url, 'user': user!.email})
         // .then is for any console output mostly for testing
         .then((value) => print("Added Art( name: $name , url: $url )"))
         // catch any possible errors
