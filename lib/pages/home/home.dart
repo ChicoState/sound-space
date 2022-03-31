@@ -1,5 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:soundspace/constants/controllers.dart';
+import 'package:soundspace/helpers/responsiveness.dart';
 import 'package:soundspace/pages/account/account.dart';
 import 'package:soundspace/widgets/custom_text.dart';
 
@@ -92,9 +95,12 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.all(8), // add small padding
             child: FloatingActionButton.extended(
                 onPressed: () {
-                  // when pressed, navigate to account page (will need to update page links)
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => AccountPage()));
+                  // when pressed, navigate to account page
+                  menuController.changeActiveItemTo("Account");
+                  if (ResponsiveWidget.isSmallScreen(context)) {
+                    Get.back();
+                  }
+                  navigationController.navigateTo("/account");
                 },
                 label:
                     const CustomText(text: "Log In", size: 14), // define text
