@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:soundspace/pages/account/account.dart';
 import 'package:soundspace/pages/music/music.dart';
 import 'package:soundspace/pages/home/home.dart';
-import 'package:soundspace/pages/upload/upload.dart';
 import 'package:soundspace/pages/trending/trending.dart';
+import 'package:soundspace/pages/upload/upload.dart';
 import 'package:soundspace/routing/routes.dart';
 
 // possible routes to widgets

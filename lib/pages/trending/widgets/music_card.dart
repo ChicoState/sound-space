@@ -11,18 +11,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
  *    So if you're doing something and images aren't loading, make sure it's a supported filetype
  */
 
-class InfoCard extends StatelessWidget {
+class MusicCard extends StatelessWidget {
   final String title;
-  final Color topColor;
   final bool isActive;
-  final VoidCallback onTap;
 
-  const InfoCard(
-      {Key? key,
-      required this.title,
-      required this.topColor,
-      this.isActive = false,
-      required this.onTap})
+  const MusicCard({Key? key, required this.title, this.isActive = false})
       : super(key: key);
 
   @override
@@ -69,7 +62,7 @@ class InfoCard extends StatelessWidget {
                           return ListView.builder(
                               itemCount: documents.length,
                               itemBuilder: ((context, index) => customListTile(
-                                  onTap: () {},
+                                  onTap: () {}, // used to navigate to page (?)
                                   title: documents[index]['name'],
                                   singer: documents[index]
                                       ['user'], //email for now
