@@ -1,7 +1,12 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:soundspace/pages/trending/widgets/art_card.dart';
 import 'package:soundspace/pages/trending/widgets/music_card.dart';
+import 'package:soundspace/pages/trending/widgets/video_card.dart';
+
+// each card is inside its own dart file, which will need to be customized once
+// backend for accessing is set up.
 
 class TrendingPage extends StatelessWidget {
   const TrendingPage({Key? key}) : super(key: key);
@@ -92,15 +97,13 @@ class TrendingPage extends StatelessWidget {
                           // add padding to each side
                           padding: EdgeInsets.fromLTRB(_width / 12,
                               _height / 20, _width / 12, _height / 20),
-                          // (!! replace MusicCard with VideoCard after creating dart file)
-                          child: const MusicCard(title: "Videos")),
+                          child: const VideoCard(title: "Videos")),
                       // Art trending card
                       Padding(
                           // add padding to each side
                           padding: EdgeInsets.fromLTRB(_width / 12,
                               _height / 20, _width / 12, _height / 20),
-                          // (!! replace MusicCard with ArtCard after creating dart file)
-                          child: const MusicCard(title: "Art"))
+                          child: const ArtCard(title: "Art"))
                     ],
                   )))),
     );
