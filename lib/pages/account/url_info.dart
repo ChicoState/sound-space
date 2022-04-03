@@ -2,23 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-//sort of a placeholder class, proof of concept w/ dynamic firebase reads
 //called by AccountPage to display all the currently logged in user's uploads
+//values are returned in a Column widget - can be formatted acordingly
 class UrlInfo extends StatefulWidget {
-  const UrlInfo({Key? key}) : super(key: key);
+  final String query;
+  const UrlInfo({Key? key, required this.query}) : super(key: key);
+
   @override
   _UrlInfoState createState() => _UrlInfoState();
 }
 
 class _UrlInfoState extends State<UrlInfo> {
-  //filter art uploads for only those matching user's email
-  final Stream<QuerySnapshot> _urlStream = FirebaseFirestore.instance
-      .collection('ART')
-      .where('user', isEqualTo: FirebaseAuth.instance.currentUser!.email)
-      .snapshots();
-
   @override
   Widget build(BuildContext context) {
+    //filter uploads for only those matching user's email
+    final Stream<QuerySnapshot> _urlStream = FirebaseFirestore.instance
+        .collection(widget.query)
+        .where('user', isEqualTo: FirebaseAuth.instance.currentUser!.email)
+        .snapshots();
     return StreamBuilder<QuerySnapshot>(
       stream: _urlStream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
