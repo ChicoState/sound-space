@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soundspace/helpers/url_validator.dart';
 
 // firebase deps
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -9,19 +10,6 @@ class ImageHandler extends StatefulWidget {
 
   @override
   _ImageHandlerState createState() => _ImageHandlerState();
-}
-
-//url validator
-bool validateUrl(String? value) {
-  String pattern =
-      r'(^https://[a-zA-z/[.com,.edu,.gov,.org,.net]?]*)'; // NEEDS UPDATING LATER
-  RegExp regExp = new RegExp(pattern);
-  if (value == null || !regExp.hasMatch(value)) {
-    // failed validation
-    return false;
-  }
-  // passed validation
-  return true;
 }
 
 // This widget is tracking its own state
