@@ -4,14 +4,14 @@ import 'package:soundspace/helpers/url_validator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class MusicForm extends StatefulWidget {
-  const MusicForm({Key? key}) : super(key: key);
+class MusicHandler extends StatefulWidget {
+  const MusicHandler({Key? key}) : super(key: key);
 
   @override
-  _MusicFormState createState() => _MusicFormState();
+  _MusicHandlerState createState() => _MusicHandlerState();
 }
 
-class _MusicFormState extends State<MusicForm> {
+class _MusicHandlerState extends State<MusicHandler> {
   /*// private vars
   final _formKey = GlobalKey<FormState>();
 

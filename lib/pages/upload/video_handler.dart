@@ -5,17 +5,17 @@ import 'package:soundspace/helpers/url_validator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class ImageHandler extends StatefulWidget {
-  const ImageHandler({Key? key}) : super(key: key);
+class VideoHandler extends StatefulWidget {
+  const VideoHandler({Key? key}) : super(key: key);
 
   @override
-  _ImageHandlerState createState() => _ImageHandlerState();
+  _VideoHandlerState createState() => _VideoHandlerState();
 }
 
 // This widget is tracking its own state
-class _ImageHandlerState extends State<ImageHandler> {
+class _VideoHandlerState extends State<VideoHandler> {
   // instance of our firestore database that should be type safe
-  CollectionReference urls = FirebaseFirestore.instance.collection('ART');
+  CollectionReference urls = FirebaseFirestore.instance.collection('VIDEO');
 
   // contains input of controlled text field
   final _urlController = TextEditingController();
@@ -32,9 +32,9 @@ class _ImageHandlerState extends State<ImageHandler> {
         // all documents must be added in json format "key : value"
         .add({'name': name, 'url': url, 'user': user!.email})
         // .then is for any console output mostly for testing
-        .then((value) => print("Added Art( name: $name , url: $url )"))
+        .then((value) => print("Added Video( name: $name , url: $url )"))
         // catch any possible errors
-        .catchError((e) => print("ADDING ART ERROR: $e"));
+        .catchError((e) => print("ADDING VIDEO ERROR: $e"));
   }
 
   @override
@@ -57,7 +57,7 @@ class _ImageHandlerState extends State<ImageHandler> {
                 }
                 return 'Please enter a valid url';
               }),
-          // TextFeild for name
+          // TextField for name
           TextFormField(
               controller: _nameController, //  field handler
               decoration: const InputDecoration(
