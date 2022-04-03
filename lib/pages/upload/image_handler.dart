@@ -27,7 +27,7 @@ bool validateUrl(String? value) {
 // This widget is tracking its own state
 class _ImageHandlerState extends State<ImageHandler> {
   // instance of our firestore database that should be type safe
-  CollectionReference urls = FirebaseFirestore.instance.collection('art-urls');
+  CollectionReference urls = FirebaseFirestore.instance.collection('ART');
 
   // contains input of controlled text field
   final _urlController = TextEditingController();

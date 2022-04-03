@@ -86,7 +86,7 @@ class UploadPage extends StatelessWidget {
                                     ElevatedButton(
                                       onPressed: () {
                                         menuController
-                                            .changeActiveItemTo("Account");
+                                            .changeActiveItemTo("/account");
                                         if (ResponsiveWidget.isSmallScreen(
                                             context)) {
                                           Get.back();

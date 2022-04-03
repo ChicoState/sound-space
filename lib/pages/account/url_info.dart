@@ -13,7 +13,7 @@ class UrlInfo extends StatefulWidget {
 class _UrlInfoState extends State<UrlInfo> {
   //filter art uploads for only those matching user's email
   final Stream<QuerySnapshot> _urlStream = FirebaseFirestore.instance
-      .collection('art-urls')
+      .collection('ART')
       .where('user', isEqualTo: FirebaseAuth.instance.currentUser!.email)
       .snapshots();
 
