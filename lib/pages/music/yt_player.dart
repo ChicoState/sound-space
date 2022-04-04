@@ -30,6 +30,8 @@ class _YtPlayerState extends State<YtPlayer> {
       // https://www.youtube.com/watch?v=esDlUtMQmeU
       // this is the video id            x->
       // everything aftter the '='
+      // TODO
+      // - integrate firebase
       initialVideoId: '5qap5aO4i9A',
       params: const YoutubePlayerParams(
         playlist: [], // takes a list of video id's

@@ -1,9 +1,7 @@
 FROM ubuntu:latest
 
 # install dependancies
-RUN apt-get update
-RUN apt-get install -y curl git wget unzip python3
-RUN apt-get clean
+RUN apt-get update && apt-get install -y curl git wget unzip python3 && apt-get clean
 
 # clone flutter repo
 RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
@@ -12,8 +10,7 @@ RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
 ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
 
 # Enable flutter web
-RUN flutter channel stable
-RUN flutter upgrade
+RUN flutter channel stable && flutter upgrade
 RUN flutter config --enable-web
 
 # copy our dir to the containor

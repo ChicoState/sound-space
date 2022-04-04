@@ -33,7 +33,7 @@ class _MusicFormState extends State<MusicForm> {
     }
     return music
         // all documents must be added in json format "key : value"
-        .add({'name': name, 'url': url, 'user': user.hashCode})
+        .add({'name': name, 'url': url, 'user': user!.email})
         // .then is for any console output mostly for testing
         .then((value) => print("Added MUSIC( name: $name , url: $url )"))
         // catch any possible errors
