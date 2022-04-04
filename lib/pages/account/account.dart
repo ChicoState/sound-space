@@ -22,8 +22,11 @@ class AccountPage extends StatelessWidget {
               children: [
                 if (appState.loginState == ApplicationLoginState.loggedIn) ...[
                   //display user's name and uploads
-                  Text("${FirebaseAuth.instance.currentUser!.displayName}"),
-                  const UrlInfo(),
+                  Text(
+                      "Welcome, ${FirebaseAuth.instance.currentUser!.displayName}"),
+                  const UrlInfo(query: 'ART'),
+                  const UrlInfo(query: 'MUSIC'),
+                  const UrlInfo(query: 'VIDEO'),
                 ] else ...[
                   const Text('Logged Out'),
                 ],

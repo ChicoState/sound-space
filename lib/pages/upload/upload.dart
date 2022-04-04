@@ -3,6 +3,7 @@ import 'package:soundspace/constants/style.dart';
 //import 'package:soundspace/widgets/custom_text.dart';
 import 'music_handler.dart';
 import 'image_handler.dart';
+import 'video_handler.dart';
 //to properly use ApplicationState context
 import 'package:soundspace/pages/account/applicationState.dart';
 import 'package:provider/provider.dart';
@@ -78,7 +79,16 @@ class UploadPage extends StatelessWidget {
                                             fontWeight: FontWeight.bold,
                                             fontSize: 16)),
                                     SizedBox(height: _height / 70),
-                                    const MusicForm(),
+                                    const MusicHandler(),
+                                    SizedBox(height: _height / 26),
+                                    // music upload text and box
+                                    const Text("Video Upload",
+                                        style: TextStyle(
+                                            color: Color.fromARGB(255, 0, 0, 0),
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16)),
+                                    SizedBox(height: _height / 70),
+                                    const VideoHandler(),
                                   ] else ...[
                                     // not logged in, redirect to log in page
                                     const Text(
