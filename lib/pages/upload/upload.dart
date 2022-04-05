@@ -92,20 +92,49 @@ class UploadPage extends StatelessWidget {
                                   ] else ...[
                                     // not logged in, redirect to log in page
                                     const Text(
-                                        'Please log in before uploading content'),
+                                      'Please log in before uploading content',
+                                      style: TextStyle(
+                                          fontStyle: FontStyle.italic),
+                                    ),
+                                    SizedBox(height: _height / 34),
                                     ElevatedButton(
-                                      onPressed: () {
-                                        menuController
-                                            .changeActiveItemTo("Account");
-                                        if (ResponsiveWidget.isSmallScreen(
-                                            context)) {
-                                          Get.back();
-                                        }
-                                        navigationController
-                                            .navigateTo("/account");
-                                      },
-                                      child: const Text('Log In'),
-                                    )
+                                        onPressed: () {
+                                          menuController
+                                              .changeActiveItemTo("Account");
+                                          if (ResponsiveWidget.isSmallScreen(
+                                              context)) {
+                                            Get.back();
+                                          }
+                                          navigationController
+                                              .navigateTo("/account");
+                                        },
+                                        // define button theme and text
+                                        style: ElevatedButton.styleFrom(
+                                            padding: EdgeInsets.zero,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(20))),
+                                        // add gradient to button
+                                        child: Ink(
+                                            decoration: BoxDecoration(
+                                                gradient: const LinearGradient(
+                                                    colors: [
+                                                      Colors.purpleAccent,
+                                                      Colors.blueAccent
+                                                    ]),
+                                                borderRadius:
+                                                    BorderRadius.circular(20)),
+                                            // define container to hold the text button
+                                            child: Container(
+                                                width: 150,
+                                                height: 50,
+                                                alignment: Alignment.center,
+                                                child: const Text(
+                                                  'Log In',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ))))
                                   ],
                                 ],
                               )))),
