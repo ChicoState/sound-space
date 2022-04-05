@@ -16,7 +16,6 @@ class VideoHandler extends StatefulWidget {
 class _VideoHandlerState extends State<VideoHandler> {
   // instance of our firestore database that should be type safe
   CollectionReference urls = FirebaseFirestore.instance.collection('MUSIC');
-
   // contains input of controlled text field
   final _urlController = TextEditingController();
   final _nameController = TextEditingController();
