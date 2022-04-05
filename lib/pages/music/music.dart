@@ -16,9 +16,9 @@ class MusicPage extends StatelessWidget {
   MusicPage({Key? key}) : super(key: key);
 
   CollectionReference music = FirebaseFirestore.instance.collection('MUSIC');
-  final String documentId = '24tDc8GfTnmMqUozX3rd';
+  final String documentId = '24tDc8GfTnmMqUozX3rd'; // CHANGE
   // TODO
-  // make this dynamically pick music
+  // change to query snapshot
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,6 @@ class MusicPage extends StatelessWidget {
         if (ds.connectionState == ConnectionState.done) {
           // have good data from doc = documentId
           Map<String, dynamic> data = ds.data!.data() as Map<String, dynamic>;
-          print(data['url']); // data is a Json list (Map)
           return MaterialApp(
             title: 'Music Player',
             theme: ThemeData(
@@ -47,7 +46,7 @@ class MusicPage extends StatelessWidget {
               scaffoldBackgroundColor: Colors.black,
             ),
             debugShowCheckedModeBanner: false,
-            home: YtPlayer(),
+            home: YtPlayer(data: data), // passive passthrough of data
           );
         }
         return Text('loading');

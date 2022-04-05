@@ -7,12 +7,13 @@ import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 // Using Youtube Player Iframe project for easier use of
 // official iFrame Player API
 
-// firebase deps
-import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import "url_handler.dart";
 
 class YtPlayer extends StatefulWidget {
+  final Map<String, dynamic> data;
+
+  YtPlayer(
+      {required this.data}); // recieving of data, 'required' b/c of dynamic properties.
   @override
   _YtPlayerState createState() => _YtPlayerState();
 }
@@ -26,13 +27,7 @@ class _YtPlayerState extends State<YtPlayer> {
     super.initState();
     _controller = YoutubePlayerController(
       // video player settings
-      // https://www.youtube.com/watch?v=5qap5aO4i9A
-      // https://www.youtube.com/watch?v=esDlUtMQmeU
-      // this is the video id            x->
-      // everything aftter the '='
-      // TODO
-      // - integrate firebase
-      initialVideoId: '5qap5aO4i9A',
+      initialVideoId: url_key(widget.data['url']), // extracting key
       params: const YoutubePlayerParams(
         playlist: [], // takes a list of video id's
         startAt: const Duration(minutes: 1, seconds: 36),
