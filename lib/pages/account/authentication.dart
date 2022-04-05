@@ -53,13 +53,34 @@ class Authentication extends StatelessWidget {
         return Row(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 24, bottom: 8),
-              child: TextButton(
-                  child: const Text('Log In/Sign Up'),
-                  onPressed: () {
-                    startLoginFlow();
-                  }),
-            ),
+                padding: const EdgeInsets.only(left: 24, bottom: 8),
+                // create elevated button to log in
+                child: ElevatedButton(
+                    onPressed: () {
+                      startLoginFlow();
+                    },
+                    // define button theme and text
+                    style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20))),
+                    // add gradient to button
+                    child: Ink(
+                        decoration: BoxDecoration(
+                            gradient: const LinearGradient(colors: [
+                              Colors.purpleAccent,
+                              Colors.blueAccent
+                            ]),
+                            borderRadius: BorderRadius.circular(20)),
+                        // define container to hold the text button
+                        child: Container(
+                            width: 120,
+                            height: 30,
+                            alignment: Alignment.center,
+                            child: const Text(
+                              'Log In/Sign Up',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ))))),
           ],
         );
       case ApplicationLoginState.emailAddress:
@@ -101,14 +122,34 @@ class Authentication extends StatelessWidget {
         return Row(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 24, bottom: 8),
-              child: TextButton(
-                child: const Text('LOGOUT'),
-                onPressed: () {
-                  signOut();
-                },
-              ),
-            ),
+                padding: const EdgeInsets.only(left: 24, bottom: 8),
+                // create elevated button to log out
+                child: ElevatedButton(
+                    onPressed: () {
+                      signOut();
+                    },
+                    // define button theme and text
+                    style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20))),
+                    // add gradient to button
+                    child: Ink(
+                        decoration: BoxDecoration(
+                            gradient: const LinearGradient(colors: [
+                              Colors.purpleAccent,
+                              Colors.blueAccent
+                            ]),
+                            borderRadius: BorderRadius.circular(20)),
+                        // define container to hold the text button
+                        child: Container(
+                            width: 120,
+                            height: 30,
+                            alignment: Alignment.center,
+                            child: const Text(
+                              'Log Out',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ))))),
           ],
         );
       default:
