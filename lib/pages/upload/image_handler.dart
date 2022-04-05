@@ -23,14 +23,22 @@ class _ImageHandlerState extends State<ImageHandler> {
 
   Future<void> addUrl(String url, String name) {
     // firebase fxn for writing new documents to a collection
+    //associate user with their upload
     var user = FirebaseAuth.instance.currentUser;
+    //list to be populated w/ IDs of music the art was approved for
+    List approvedFor = [];
     if (user == null) {
       //this *should* never run because of the if/else in upload.dart
       print("ERROR: image_handler upload - User should not be null");
     }
     return urls
         // all documents must be added in json format "key : value"
-        .add({'name': name, 'url': url, 'user': user!.email})
+        .add({
+          'name': name,
+          'url': url,
+          'user': user!.email,
+          'approvedFor': approvedFor
+        })
         // .then is for any console output mostly for testing
         .then((value) => print("Added Art( name: $name , url: $url )"))
         // catch any possible errors
@@ -57,7 +65,7 @@ class _ImageHandlerState extends State<ImageHandler> {
                 }
                 return 'Please enter a valid url';
               }),
-          // TextFeild for name
+          // TextField for name
           TextFormField(
               controller: _nameController, //  field handler
               decoration: const InputDecoration(

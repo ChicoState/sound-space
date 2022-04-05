@@ -26,7 +26,7 @@ class AccountPage extends StatelessWidget {
                       "Welcome, ${FirebaseAuth.instance.currentUser!.displayName}"),
                   const UrlInfo(query: 'ART'),
                   const UrlInfo(query: 'MUSIC'),
-                  const UrlInfo(query: 'VIDEO'),
+                  //const UrlInfo(query: 'VIDEO'),
                 ] else ...[
                   const Text('Logged Out'),
                 ],

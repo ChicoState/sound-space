@@ -21,14 +21,23 @@ class _MusicHandlerState extends State<MusicHandler> {
 
   Future<void> addUrl(String url, String name) {
     // firebase fxn for writing new documents to a collection
+    //associate user with their upload
     var user = FirebaseAuth.instance.currentUser;
+    //list to be populated w/ IDs of approved art
+    List approvals = [];
     if (user == null) {
       //this *should* never run because of the if/else in upload.dart
       print("ERROR: music_handler upload - User should not be null");
     }
     return urls
         // all documents must be added in json format "key : value"
-        .add({'name': name, 'url': url, 'user': user!.email})
+        .add({
+          'name': name,
+          'url': url,
+          'user': user!.email,
+          'isVideo': false,
+          'approvals': approvals
+        })
         // .then is for any console output mostly for testing
         .then((value) => print("Added Music( name: $name , url: $url )"))
         // catch any possible errors
@@ -40,7 +49,7 @@ class _MusicHandlerState extends State<MusicHandler> {
     return Form(
       child: Column(
         children: <Widget>[
-          // TextFeild for url
+          // TextField for url
           TextFormField(
               controller: _urlController,
               decoration: const InputDecoration(
