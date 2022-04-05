@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soundspace/pages/account/account.dart';
+import 'package:soundspace/pages/approval/approval.dart';
 import 'package:soundspace/pages/music/music.dart';
 import 'package:soundspace/pages/home/home.dart';
 import 'package:soundspace/pages/trending/trending.dart';
@@ -20,6 +21,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(MusicPage());
     case AccountPageRoute:
       return _getPageRoute(AccountPage());
+    case ApprovalPageRoute:
+      return _getPageRoute(ApprovalPage());
     default:
       return _getPageRoute(HomePage());
   }
