@@ -49,8 +49,10 @@ class VideoCard extends StatelessWidget {
               Expanded(
                   //fetch all 'art-url' documents
                   child: FutureBuilder<QuerySnapshot>(
-                      future:
-                          FirebaseFirestore.instance.collection('VIDEO').get(),
+                      future: FirebaseFirestore.instance
+                          .collection('MUSIC')
+                          .where('isVideo', isEqualTo: true)
+                          .get(),
                       //convert documents into a list
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {

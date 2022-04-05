@@ -15,22 +15,30 @@ class VideoHandler extends StatefulWidget {
 // This widget is tracking its own state
 class _VideoHandlerState extends State<VideoHandler> {
   // instance of our firestore database that should be type safe
-  CollectionReference urls = FirebaseFirestore.instance.collection('VIDEO');
-
+  CollectionReference urls = FirebaseFirestore.instance.collection('MUSIC');
   // contains input of controlled text field
   final _urlController = TextEditingController();
   final _nameController = TextEditingController();
 
   Future<void> addUrl(String url, String name) {
     // firebase fxn for writing new documents to a collection
+    //associate user with their upload
     var user = FirebaseAuth.instance.currentUser;
+    //list to be populated w/ IDs of approved art
+    List approvals = [];
     if (user == null) {
       //this *should* never run because of the if/else in upload.dart
       print("ERROR: image_handler upload - User should not be null");
     }
     return urls
         // all documents must be added in json format "key : value"
-        .add({'name': name, 'url': url, 'user': user!.email})
+        .add({
+          'name': name,
+          'url': url,
+          'user': user!.email,
+          'isVideo': true,
+          'approvals': approvals
+        })
         // .then is for any console output mostly for testing
         .then((value) => print("Added Video( name: $name , url: $url )"))
         // catch any possible errors
