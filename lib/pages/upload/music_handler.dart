@@ -44,6 +44,8 @@ class _MusicHandlerState extends State<MusicHandler> {
         .catchError((e) => print("ADDING MUSIC ERROR: $e"));
   }
 
+  CollectionReference music = FirebaseFirestore.instance.collection('MUSIC');
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -90,7 +92,7 @@ class _MusicHandlerState extends State<MusicHandler> {
                   String _url =
                       _urlController.text; // this will act as our collected url
                   String _name = _nameController.text;
-                  addUrl(_url, _name);
+                  addUrl(_url, _name); // values are added to db here
                   Scaffold.of(context)
                       .showSnackBar(SnackBar(content: Text('Processing data')));
                 } else {

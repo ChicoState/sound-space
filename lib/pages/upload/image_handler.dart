@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:soundspace/helpers/url_validator.dart';
 
+import 'valid.dart';
+
 // firebase deps
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -91,7 +93,7 @@ class _ImageHandlerState extends State<ImageHandler> {
                   String _url =
                       _urlController.text; // this will act as our collected url
                   String _name = _nameController.text;
-                  addUrl(_url, _name);
+                  addUrl(_url, _name); // values are added to db here
                   Scaffold.of(context)
                       .showSnackBar(SnackBar(content: Text('Processing data')));
                 } else {
