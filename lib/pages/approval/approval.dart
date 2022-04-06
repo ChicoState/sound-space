@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:soundspace/constants/controllers.dart';
 import 'package:soundspace/helpers/responsiveness.dart';
 //other
-import 'create_approval_request.dart';
+import 'approval_request_form.dart';
 
 class ApprovalPage extends StatelessWidget {
   const ApprovalPage({Key? key}) : super(key: key);
