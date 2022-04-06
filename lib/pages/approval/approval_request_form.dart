@@ -10,8 +10,7 @@ class ApprovalRequestForm extends StatefulWidget {
 }
 
 class _ApprovalRequestFormState extends State<ApprovalRequestForm> {
-  CollectionReference approvals =
-      FirebaseFirestore.instance.collection('APPROVALS');
+  CollectionReference music = FirebaseFirestore.instance.collection('MUSIC');
   final _formKey =
       GlobalKey<FormState>(debugLabel: '_ApprovalRequestFormState');
   final _musicNameController = TextEditingController();
@@ -43,21 +42,22 @@ class _ApprovalRequestFormState extends State<ApprovalRequestForm> {
     }
 
     if (validUpload) {
-      QuerySnapshot approvalSnapshot = await FirebaseFirestore.instance
-          .collection('APPROVALS')
-          .where('artID', isEqualTo: artID)
-          .where('musicID', isEqualTo: musicID)
+      musicSnapshot = await FirebaseFirestore.instance
+          .collection('MUSIC')
+          .where(FieldPath.documentId, isEqualTo: musicID)
           .get();
 
-      if (approvalSnapshot.docs.isEmpty) {
-        return approvals
-            .add({
-              'artID': artID,
-              'musicID': musicID,
-            })
-            .then((value) =>
-                print("Added Approval( art: $artID , music: $musicID )"))
-            .catchError((e) => print("ADDING ART ERROR: $e"));
+      if (musicSnapshot.docs.isNotEmpty) {
+        List tmp = musicSnapshot.docs.first.get('pendingApprovals');
+        if (!tmp.contains(artID)) {
+          tmp.add(artID);
+          return music
+              .doc(musicID)
+              .update({'pendingApprovals': tmp})
+              .then((value) =>
+                  print("Added Approval( art: $artID , music: $musicID )"))
+              .catchError((e) => print("ADDING ART ERROR: $e"));
+        }
       }
     }
   }

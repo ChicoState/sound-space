@@ -21,7 +21,7 @@ class ApprovalPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           if (appState.loginState == ApplicationLoginState.loggedIn) ...[
-            ApprovalRequestForm(),
+            const ApprovalRequestForm(),
           ] else ...[
             const Text('Please log in to approve/request approval'),
             ElevatedButton(
