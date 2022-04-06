@@ -9,6 +9,7 @@ import 'package:soundspace/constants/controllers.dart';
 import 'package:soundspace/helpers/responsiveness.dart';
 //other
 import 'approval_request_form.dart';
+import 'view_approvals.dart';
 
 class ApprovalPage extends StatelessWidget {
   const ApprovalPage({Key? key}) : super(key: key);
@@ -22,6 +23,7 @@ class ApprovalPage extends StatelessWidget {
         children: <Widget>[
           if (appState.loginState == ApplicationLoginState.loggedIn) ...[
             const ApprovalRequestForm(),
+            const ViewApprovals(),
           ] else ...[
             const Text('Please log in to approve/request approval'),
             ElevatedButton(
