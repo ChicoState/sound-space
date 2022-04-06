@@ -7,6 +7,8 @@ import 'package:soundspace/pages/account/authentication.dart';
 import 'package:get/get.dart';
 import 'package:soundspace/constants/controllers.dart';
 import 'package:soundspace/helpers/responsiveness.dart';
+//other
+import 'create_approval_request.dart';
 
 class ApprovalPage extends StatelessWidget {
   const ApprovalPage({Key? key}) : super(key: key);
@@ -19,7 +21,7 @@ class ApprovalPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           if (appState.loginState == ApplicationLoginState.loggedIn) ...[
-            const Text("Approval Page"),
+            ApprovalRequestForm(),
           ] else ...[
             const Text('Please log in to approve/request approval'),
             ElevatedButton(
