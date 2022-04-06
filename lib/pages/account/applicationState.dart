@@ -3,8 +3,6 @@ import 'package:soundspace/firebase_options.dart';
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-//import 'package:provider/provider.dart';
-//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'authentication.dart';
 
 //First called in main(), establishes auth object
@@ -14,7 +12,7 @@ class ApplicationState extends ChangeNotifier {
   }
 
   Future<void> init() async {
-    //probably unnecessary second call to initialize
+    //possibly unnecessary second call to initialize
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );

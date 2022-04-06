@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:soundspace/helpers/url_validator.dart';
+
 // firebase deps
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class MusicHandler extends StatefulWidget {
-  const MusicHandler({Key? key}) : super(key: key);
+class VideoHandler extends StatefulWidget {
+  const VideoHandler({Key? key}) : super(key: key);
 
   @override
-  _MusicHandlerState createState() => _MusicHandlerState();
+  _VideoHandlerState createState() => _VideoHandlerState();
 }
 
-class _MusicHandlerState extends State<MusicHandler> {
+// This widget is tracking its own state
+class _VideoHandlerState extends State<VideoHandler> {
   // instance of our firestore database that should be type safe
   CollectionReference urls = FirebaseFirestore.instance.collection('MUSIC');
-
   // contains input of controlled text field
   final _urlController = TextEditingController();
   final _nameController = TextEditingController();
@@ -27,7 +28,7 @@ class _MusicHandlerState extends State<MusicHandler> {
     List approvals = [];
     if (user == null) {
       //this *should* never run because of the if/else in upload.dart
-      print("ERROR: music_handler upload - User should not be null");
+      print("ERROR: image_handler upload - User should not be null");
     }
     return urls
         // all documents must be added in json format "key : value"
@@ -35,35 +36,13 @@ class _MusicHandlerState extends State<MusicHandler> {
           'name': name,
           'url': url,
           'user': user!.email,
-          'isVideo': false,
+          'isVideo': true,
           'approvals': approvals
         })
         // .then is for any console output mostly for testing
-        .then((value) => print("Added Music( name: $name , url: $url )"))
+        .then((value) => print("Added Video( name: $name , url: $url )"))
         // catch any possible errors
-        .catchError((e) => print("ADDING MUSIC ERROR: $e"));
-  }
-
-  CollectionReference music = FirebaseFirestore.instance.collection('MUSIC');
-
-  // contains input of controlled text field
-  final _urlController = TextEditingController();
-  final _nameController = TextEditingController();
-
-  Future<void> addUrl(String url, String name) {
-    // firebase fxn for writing new documents to a collection
-    var user = FirebaseAuth.instance.currentUser;
-    if (user == null) {
-      //this *should* never run because of the if/else in upload.dart
-      print("ERROR: image_handler upload - User should not be null");
-    }
-    return music
-        // all documents must be added in json format "key : value"
-        .add({'name': name, 'url': url, 'user': user!.email})
-        // .then is for any console output mostly for testing
-        .then((value) => print("Added MUSIC( name: $name , url: $url )"))
-        // catch any possible errors
-        .catchError((e) => print("ADDING MUSIC ERROR: $e"));
+        .catchError((e) => print("ADDING VIDEO ERROR: $e"));
   }
 
   @override
@@ -112,7 +91,7 @@ class _MusicHandlerState extends State<MusicHandler> {
                   String _url =
                       _urlController.text; // this will act as our collected url
                   String _name = _nameController.text;
-                  addUrl(_url, _name); // values are added to db here
+                  addUrl(_url, _name);
                   Scaffold.of(context)
                       .showSnackBar(SnackBar(content: Text('Processing data')));
                 } else {

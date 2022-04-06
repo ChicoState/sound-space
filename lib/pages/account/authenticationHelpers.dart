@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soundspace/widgets/side_menu_item.dart';
 
 class EmailForm extends StatefulWidget {
   const EmailForm({required this.callback});
