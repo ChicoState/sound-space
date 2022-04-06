@@ -11,45 +11,52 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'yt_player.dart';
+import 'url_handler.dart';
 
-class MusicPage extends StatelessWidget {
-  MusicPage({Key? key}) : super(key: key);
-
-  CollectionReference music = FirebaseFirestore.instance.collection('MUSIC');
-  final String documentId = '24tDc8GfTnmMqUozX3rd'; // CHANGE
-  // TODO
-  // change to query snapshot
+class MusicPage extends StatefulWidget {
+  const MusicPage({Key? key}) : super(key: key);
 
   @override
+  _MusicPageImpl createState() => _MusicPageImpl();
+}
+
+class _MusicPageImpl extends State<MusicPage> {
+  @override
   Widget build(BuildContext context) {
-    return FutureBuilder<DocumentSnapshot>(
-      future: music.doc(documentId).get(),
-      builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> ds) {
-        if (ds.hasError) {
+    final Stream<QuerySnapshot> music = FirebaseFirestore.instance
+        .collection('MUSIC')
+        .where('user', isEqualTo: FirebaseAuth.instance.currentUser!.email)
+        .snapshots();
+    return StreamBuilder<QuerySnapshot>(
+      stream: music,
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> qs) {
+        if (qs.hasError) {
           // catch errors
-          return Text('FIRESTORE ERROR');
+          return const Text('FIRESTORE ERROR');
         }
 
-        if (ds.hasData && !ds.data!.exists) {
-          // document does not exists
-          return Text('404 MUSIC DOES NOT EXIST');
+        if (qs.connectionState == ConnectionState.waiting) {
+          // server connection error
+          return const Text('Loading...');
         }
 
-        if (ds.connectionState == ConnectionState.done) {
-          // have good data from doc = documentId
-          Map<String, dynamic> data = ds.data!.data() as Map<String, dynamic>;
-          return MaterialApp(
-            title: 'Music Player',
-            theme: ThemeData(
-              brightness: Brightness.dark,
-              primarySwatch: Colors.blue,
-              scaffoldBackgroundColor: Colors.black,
-            ),
-            debugShowCheckedModeBanner: false,
-            home: YtPlayer(data: data), // passive passthrough of data
-          );
-        }
-        return Text('loading');
+        // urls is the string list of all urls
+        List<String> urls = [];
+        qs.data!.docs.forEach((DocumentSnapshot d) {
+          // adding only key to urls
+          urls.add(url_key(d.get('url')));
+        });
+
+        return MaterialApp(
+          title: 'Music Player',
+          theme: ThemeData(
+            brightness: Brightness.dark,
+            primarySwatch: Colors.blue,
+            scaffoldBackgroundColor: Colors.black,
+          ),
+          debugShowCheckedModeBanner: false,
+          home: YtPlayer(data: urls), // passive passthrough of data
+        );
       },
     );
   }

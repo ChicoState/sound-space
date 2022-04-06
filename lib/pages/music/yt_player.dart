@@ -10,7 +10,7 @@ import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import "url_handler.dart";
 
 class YtPlayer extends StatefulWidget {
-  final Map<String, dynamic> data;
+  final List<String> data;
 
   YtPlayer(
       {required this.data}); // recieving of data, 'required' b/c of dynamic properties.
@@ -27,7 +27,7 @@ class _YtPlayerState extends State<YtPlayer> {
     super.initState();
     _controller = YoutubePlayerController(
       // video player settings
-      initialVideoId: url_key(widget.data['url']), // extracting key
+      initialVideoId: widget.data[0], // extracting key
       params: const YoutubePlayerParams(
         playlist: [], // takes a list of video id's
         startAt: const Duration(minutes: 1, seconds: 36),
