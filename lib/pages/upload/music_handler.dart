@@ -46,26 +46,6 @@ class _MusicHandlerState extends State<MusicHandler> {
 
   CollectionReference music = FirebaseFirestore.instance.collection('MUSIC');
 
-  // contains input of controlled text field
-  final _urlController = TextEditingController();
-  final _nameController = TextEditingController();
-
-  Future<void> addUrl(String url, String name) {
-    // firebase fxn for writing new documents to a collection
-    var user = FirebaseAuth.instance.currentUser;
-    if (user == null) {
-      //this *should* never run because of the if/else in upload.dart
-      print("ERROR: image_handler upload - User should not be null");
-    }
-    return music
-        // all documents must be added in json format "key : value"
-        .add({'name': name, 'url': url, 'user': user!.email})
-        // .then is for any console output mostly for testing
-        .then((value) => print("Added MUSIC( name: $name , url: $url )"))
-        // catch any possible errors
-        .catchError((e) => print("ADDING MUSIC ERROR: $e"));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Form(
