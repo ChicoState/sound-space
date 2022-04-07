@@ -57,13 +57,14 @@ class UploadPage extends StatelessWidget {
                       padding: EdgeInsets.only(
                           left: _width / 25, right: _width / 25),
                       child: Consumer<ApplicationState>(
-                          builder: (context, appState, _) => Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
+                          builder: (context, appState, _) => ListView(
+                                // ListView makes page scrollable
+                                shrinkWrap: true,
                                 children: <Widget>[
                                   if (appState.loginState ==
                                       ApplicationLoginState.loggedIn) ...[
                                     // image upload text and box
+                                    SizedBox(height: _height / 26),
                                     const Text("Image Upload",
                                         style: TextStyle(
                                             color: Color.fromARGB(255, 0, 0, 0),
@@ -89,13 +90,15 @@ class UploadPage extends StatelessWidget {
                                             fontSize: 16)),
                                     SizedBox(height: _height / 70),
                                     const VideoHandler(),
+                                    SizedBox(height: _height / 26)
                                   ] else ...[
                                     // not logged in, redirect to log in page
-                                    const Text(
+                                    const Center(
+                                        child: Text(
                                       'Please log in before uploading content',
                                       style: TextStyle(
                                           fontStyle: FontStyle.italic),
-                                    ),
+                                    )),
                                     SizedBox(height: _height / 34),
                                     ElevatedButton(
                                         onPressed: () {
@@ -110,6 +113,10 @@ class UploadPage extends StatelessWidget {
                                         },
                                         // define button theme and text
                                         style: ElevatedButton.styleFrom(
+                                            primary: Colors
+                                                .transparent, // hide large button
+                                            shadowColor: Colors
+                                                .transparent, // hide button shadow
                                             padding: EdgeInsets.zero,
                                             shape: RoundedRectangleBorder(
                                                 borderRadius:
@@ -126,8 +133,8 @@ class UploadPage extends StatelessWidget {
                                                     BorderRadius.circular(20)),
                                             // define container to hold the text button
                                             child: Container(
-                                                width: 150,
                                                 height: 50,
+                                                width: 200,
                                                 alignment: Alignment.center,
                                                 child: const Text(
                                                   'Log In',
