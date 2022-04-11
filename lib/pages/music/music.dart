@@ -44,7 +44,7 @@ class _MusicPageImpl extends State<MusicPage> {
         List<String> urls = [];
         qs.data!.docs.forEach((DocumentSnapshot d) {
           // adding only key to urls
-          urls.add(url_key(d.get('url')));
+          urls.add(url_key(d.get('url')!));
         });
 
         return MaterialApp(
