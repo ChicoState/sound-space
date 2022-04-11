@@ -59,7 +59,12 @@ class AccountPage extends StatelessWidget {
                               // call profile layout widget
                               const ProfileLayout()
                             ] else ...[
-                              const Text('Logged Out'),
+                              const Center(
+                                  child: Text(
+                                'Please log in / sign up',
+                                style: TextStyle(fontStyle: FontStyle.italic),
+                              )),
+                              SizedBox(height: _height / 60)
                             ],
                           ],
                         ),

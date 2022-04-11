@@ -92,17 +92,29 @@ class ProfileLayout extends StatelessWidget {
                       physics: const NeverScrollableScrollPhysics(),
                       // define each page view (call UrlInfo for given type)
                       children: [
-                        Column(
-                          // All uploads
-                          children: const [
-                            UrlInfo(query: 'MUSIC'),
-                            UrlInfo(query: 'ART')
+                        ListView(
+                          children: [
+                            Column(
+                              // All uploads
+                              children: const [
+                                UrlInfo(query: 'MUSIC'),
+                                UrlInfo(query: 'ART')
+                              ],
+                            )
                           ],
                         ),
-                        const UrlInfo(query: 'MUSIC'), // music  uploads
-                        const Text(
-                            "add video url info here"), // videos  uploads
-                        const UrlInfo(query: 'ART') // art uploads
+                        ListView(children: const [
+                          // music uploads
+                          UrlInfo(query: 'MUSIC')
+                        ]),
+                        ListView(children: const [
+                          // videos  uploads
+                          Text("add video url info here")
+                        ]),
+                        ListView(children: const [
+                          // art uploads
+                          UrlInfo(query: 'ART')
+                        ])
                       ],
                     )))),
         SizedBox(height: _height / 70),

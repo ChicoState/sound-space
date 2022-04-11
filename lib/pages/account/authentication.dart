@@ -50,10 +50,10 @@ class Authentication extends StatelessWidget {
     switch (loginState) {
       case ApplicationLoginState.loggedOut:
         //give option to start login/signup process
-        return Row(
-          children: [
-            Padding(
-                padding: const EdgeInsets.only(left: 24, bottom: 8),
+        return Align(
+            alignment: Alignment.center,
+            child: Padding(
+                padding: const EdgeInsets.all(8),
                 // create elevated button to log in
                 child: ElevatedButton(
                     onPressed: () {
@@ -74,15 +74,13 @@ class Authentication extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20)),
                         // define container to hold the text button
                         child: Container(
-                            width: 120,
-                            height: 30,
+                            width: 150,
+                            height: 50,
                             alignment: Alignment.center,
                             child: const Text(
                               'Log In/Sign Up',
                               style: TextStyle(fontWeight: FontWeight.bold),
-                            ))))),
-          ],
-        );
+                            ))))));
       case ApplicationLoginState.emailAddress:
         //need email, return relevant form
         return EmailForm(
@@ -119,39 +117,32 @@ class Authentication extends StatelessWidget {
         );
       case ApplicationLoginState.loggedIn:
         //give option to logout
-        return Row(
-          children: [
-            Padding(
-                padding: const EdgeInsets.only(left: 24, bottom: 8),
-                // create elevated button to log out
-                child: ElevatedButton(
-                    onPressed: () {
-                      signOut();
-                    },
-                    // define button theme and text
-                    style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.zero,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20))),
-                    // add gradient to button
-                    child: Ink(
-                        decoration: BoxDecoration(
-                            gradient: const LinearGradient(colors: [
-                              Colors.purpleAccent,
-                              Colors.blueAccent
-                            ]),
-                            borderRadius: BorderRadius.circular(20)),
-                        // define container to hold the text button
-                        child: Container(
-                            width: 120,
-                            height: 30,
-                            alignment: Alignment.center,
-                            child: const Text(
-                              'Log Out',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ))))),
-          ],
-        );
+        return Align(
+            alignment: Alignment.center,
+            child: ElevatedButton(
+                onPressed: () {
+                  signOut();
+                },
+                // define button theme and text
+                style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20))),
+                // add gradient to button
+                child: Ink(
+                    decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                            colors: [Colors.purpleAccent, Colors.blueAccent]),
+                        borderRadius: BorderRadius.circular(20)),
+                    // define container to hold the text button
+                    child: Container(
+                        width: 120,
+                        height: 30,
+                        alignment: Alignment.center,
+                        child: const Text(
+                          'Log Out',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        )))));
       default:
         return Row(
           children: const [
