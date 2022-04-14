@@ -81,6 +81,7 @@ class TrendingPage extends StatelessWidget {
                       ),
                       automaticallyImplyLeading: false),
                   body: TabBarView(
+                    physics: const NeverScrollableScrollPhysics(),
                     // define each page view
                     children: [
                       // Music trending card
