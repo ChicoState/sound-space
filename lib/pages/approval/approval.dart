@@ -16,15 +16,19 @@ class ApprovalPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //check login status
     return Consumer<ApplicationState>(
       builder: (context, appState, _) => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           if (appState.loginState == ApplicationLoginState.loggedIn) ...[
+            //form to submit artwork for approval
             const ApprovalRequestForm(),
+            //list of pending approvals with option to approve or reject
             const ViewApprovals(),
           ] else ...[
+            //user is logged out, prompt redirect to account page
             const Text('Please log in to approve/request approval'),
             ElevatedButton(
               onPressed: () {

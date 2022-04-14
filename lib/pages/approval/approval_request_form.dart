@@ -2,6 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+/*  Currently, this is just a text form that takes the name of an art and music document
+ *  This assumes the "name" field is unique, which is not necessarily true
+ *  The form also silently fails if the names are not found or the artwork is not the user's
+ *  I want to replace this with a list of the user's artworks and a button to select for approval,
+ *  But that has a number of complications and will come at a later date
+ */
+
 class ApprovalRequestForm extends StatefulWidget {
   const ApprovalRequestForm({Key? key}) : super(key: key);
 
@@ -16,7 +23,9 @@ class _ApprovalRequestFormState extends State<ApprovalRequestForm> {
   final _musicNameController = TextEditingController();
   final _artNameController = TextEditingController();
 
+  //verify art and music names and create pending approval
   Future<void> createApprovalInstance(String artName, String musicName) async {
+    //find the art document with matching name
     bool validUpload = true;
     QuerySnapshot artSnapshot = await FirebaseFirestore.instance
         .collection('ART')
@@ -30,6 +39,7 @@ class _ApprovalRequestFormState extends State<ApprovalRequestForm> {
       validUpload = false;
     }
 
+    //find the music document with matching name
     QuerySnapshot musicSnapshot = await FirebaseFirestore.instance
         .collection('MUSIC')
         .where('name', isEqualTo: musicName)
@@ -41,6 +51,7 @@ class _ApprovalRequestFormState extends State<ApprovalRequestForm> {
       validUpload = false;
     }
 
+    //only update approval state if both documents were found
     if (validUpload) {
       musicSnapshot = await FirebaseFirestore.instance
           .collection('MUSIC')
@@ -48,8 +59,10 @@ class _ApprovalRequestFormState extends State<ApprovalRequestForm> {
           .get();
 
       if (musicSnapshot.docs.isNotEmpty) {
+        //pull the lists from FireStore
         List pending = musicSnapshot.docs.first.get('pendingApprovals');
         List approved = musicSnapshot.docs.first.get('approvals');
+        //prevent duplicates in pending/approved lists
         if (!pending.contains(artID) && !approved.contains(artID)) {
           pending.add(artID);
           return music
@@ -63,6 +76,7 @@ class _ApprovalRequestFormState extends State<ApprovalRequestForm> {
     }
   }
 
+  //build the form
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -75,6 +89,7 @@ class _ApprovalRequestFormState extends State<ApprovalRequestForm> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                //form item for art name
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: TextFormField(
@@ -90,6 +105,7 @@ class _ApprovalRequestFormState extends State<ApprovalRequestForm> {
                     },
                   ),
                 ),
+                //form item for music name
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: TextFormField(
@@ -105,6 +121,7 @@ class _ApprovalRequestFormState extends State<ApprovalRequestForm> {
                     },
                   ),
                 ),
+                //submit button, calls createApprovalInstance()
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   child: Row(

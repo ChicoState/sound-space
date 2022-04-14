@@ -10,12 +10,16 @@ class ViewApprovals extends StatefulWidget {
 }
 
 class _ViewApprovalsState extends State<ViewApprovals> {
-  Future<void> approveArt(String musicName, String artID) async {
-    CollectionReference musicCollection =
-        FirebaseFirestore.instance.collection('MUSIC');
-    CollectionReference artCollection =
-        FirebaseFirestore.instance.collection('ART');
+  CollectionReference musicCollection =
+      FirebaseFirestore.instance.collection('MUSIC');
+  CollectionReference artCollection =
+      FirebaseFirestore.instance.collection('ART');
 
+  //Approving an artwork requires updating 3 lists:
+  //  removing artID from MUSIC/pendingApprovals
+  //  adding artID to MUSIC/approvals
+  //  adding musicID to ART/approvedFor
+  Future<void> approveArt(String musicName, String artID) async {
     QuerySnapshot musicSnapshot = await FirebaseFirestore.instance
         .collection('MUSIC')
         .where('name', isEqualTo: musicName)
@@ -24,6 +28,7 @@ class _ViewApprovalsState extends State<ViewApprovals> {
         await FirebaseFirestore.instance.collection('ART').doc(artID).get();
 
     if (musicSnapshot.docs.isNotEmpty) {
+      //read and update the three lists
       List<dynamic> pending = musicSnapshot.docs.first.get('pendingApprovals');
       List<dynamic> approved = musicSnapshot.docs.first.get('approvals');
       List<dynamic> artApproved = artSnapshot.get('approvedFor');
@@ -31,6 +36,7 @@ class _ViewApprovalsState extends State<ViewApprovals> {
       approved.add(artID);
       String musicID = musicSnapshot.docs.first.id;
       artApproved.add(musicID);
+      //update the FireStore documents
       musicCollection
           .doc(musicID)
           .update({'pendingApprovals': pending})
@@ -52,6 +58,13 @@ class _ViewApprovalsState extends State<ViewApprovals> {
     }
   }
 
+  /*  For future consideration:
+   *  Maybe add another list of rejected approvals to MUSIC
+   *  That way a user can't spam their art for approval
+   */
+
+  //rejecting an artwork only requires updating one list:
+  //  removing artID from MUSIC/pendingApprovals
   Future<void> rejectArt(String musicName, String artID) async {
     CollectionReference musicCollection =
         FirebaseFirestore.instance.collection('MUSIC');
@@ -62,9 +75,11 @@ class _ViewApprovalsState extends State<ViewApprovals> {
         .get();
 
     if (musicSnapshot.docs.isNotEmpty) {
+      //read and update the list
       List<dynamic> pending = musicSnapshot.docs.first.get('pendingApprovals');
       pending.remove(artID);
       String musicID = musicSnapshot.docs.first.id;
+      //update the FireStore documents
       musicCollection
           .doc(musicID)
           .update({'pendingApprovals': pending})
@@ -76,14 +91,15 @@ class _ViewApprovalsState extends State<ViewApprovals> {
 
   @override
   Widget build(BuildContext context) {
+    //streams to track
     final Stream<QuerySnapshot> _musicStream = FirebaseFirestore.instance
         .collection('MUSIC')
         .where('user', isEqualTo: FirebaseAuth.instance.currentUser!.email)
         .snapshots();
-
     final Stream<QuerySnapshot> _artStream =
         FirebaseFirestore.instance.collection('ART').snapshots();
 
+    //first StreamBuilder - tracks user's music documents
     return StreamBuilder<QuerySnapshot>(
       stream: _musicStream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -96,10 +112,12 @@ class _ViewApprovalsState extends State<ViewApprovals> {
         return Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
-          //turn a collection of documents into a list and display as ListTile widgets
+          //turn a collection of documents into a dictionary and iterate through
           children: snapshot.data!.docs.map((DocumentSnapshot document) {
             Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+            //check if the document has pending approvals
             if (data['pendingApprovals'].isNotEmpty) {
+              //second StreamBuilder - tracks artworks - filters by pending approvals
               return StreamBuilder(
                 stream: _artStream,
                 builder: (BuildContext context,
@@ -110,18 +128,23 @@ class _ViewApprovalsState extends State<ViewApprovals> {
                   if (artSnapshot.connectionState == ConnectionState.waiting) {
                     return const Text('Loading...');
                   }
+                  //build the content of the widget as a List of Widgets
                   List<Widget> arts = [];
+                  //WIDGET: title of the video (bolded)
                   arts.add(Text(data['name'],
                       style: const TextStyle(fontWeight: FontWeight.bold)));
                   artSnapshot.data!.docs.forEach((element) {
                     if (data['pendingApprovals'].contains(element.id)) {
+                      //WIDGET: name of pending artwork
                       arts.add(Text(element.get('name')));
+                      //WIDGET: approve button
                       arts.add(TextButton(
                         child: const Text("Approve"),
                         onPressed: () {
                           approveArt(data['name'], element.id);
                         },
                       ));
+                      //WIDGET: reject button
                       arts.add(TextButton(
                         child: const Text("Reject"),
                         onPressed: () {
@@ -130,6 +153,7 @@ class _ViewApprovalsState extends State<ViewApprovals> {
                       ));
                     }
                   });
+                  //return a column with the list of widgets
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -138,6 +162,7 @@ class _ViewApprovalsState extends State<ViewApprovals> {
                 },
               );
             } else {
+              //document has no pending approvals, but we still need a widget
               return const Text('');
             }
           }).toList(),
