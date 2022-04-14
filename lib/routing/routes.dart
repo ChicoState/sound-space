@@ -6,12 +6,14 @@ const UploadPageDisplayName = "Upload";
 const MusicPageDisplayName = "Music";
 const AccountPageDisplayName = "Account";
 const TrendingPageDisplayName = "Trending";
+const ApprovalPageDisplayName = "Approval";
 
 const HomePageRoute = "/home";
 const UploadPageRoute = "/upload";
 const MusicPageRoute = "/music";
 const AccountPageRoute = "/account";
 const TrendingPageRoute = "/trending";
+const ApprovalPageRoute = "/approval";
 
 // These are the routes displayed in our right drawer
 
@@ -28,4 +30,5 @@ List<MenuItem> sideMenuItems = [
   MenuItem(MusicPageDisplayName, MusicPageRoute),
   MenuItem(UploadPageDisplayName, UploadPageRoute),
   MenuItem(AccountPageDisplayName, AccountPageRoute),
+  MenuItem(ApprovalPageDisplayName, ApprovalPageRoute),
 ];

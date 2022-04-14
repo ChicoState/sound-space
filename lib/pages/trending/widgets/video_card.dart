@@ -3,13 +3,6 @@ import 'package:soundspace/constants/style.dart';
 import 'package:soundspace/pages/trending/widgets/components/custom_list_tile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-/*  Note from Owen North:
- *    The 'NetworkImage' widget used to render images (called in customListTile, data here @ line 76) is picky
- *    Images I had been using from imgur did not work - it has to be a web-hosted .png or similar
- *    Not a big deal at the moment, but I wanted to make a note of it
- *    So if you're doing something and images aren't loading, make sure it's a supported filetype
- */
-
 class VideoCard extends StatelessWidget {
   final String title;
   final bool isActive;
