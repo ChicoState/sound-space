@@ -1,5 +1,3 @@
-//import 'dart:html';
-//import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,6 +17,9 @@ class _ViewApprovalsState extends State<ViewApprovals> {
         .where('user', isEqualTo: FirebaseAuth.instance.currentUser!.email)
         .snapshots();
 
+    final Stream<QuerySnapshot> _artStream =
+        FirebaseFirestore.instance.collection('ART').snapshots();
+
     return StreamBuilder<QuerySnapshot>(
       stream: _musicStream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -35,25 +36,33 @@ class _ViewApprovalsState extends State<ViewApprovals> {
           children: snapshot.data!.docs.map((DocumentSnapshot document) {
             Map<String, dynamic> data = document.data() as Map<String, dynamic>;
             if (data['pendingApprovals'].isNotEmpty) {
-              /*return ListTile(
-                title: Text(data['name']),
-                subtitle: Text(data['url']),
-              );*/
-              List<Widget> arts = [];
-              arts.add(Text(
-                data['name'],
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ));
-              data['pendingApprovals'].forEach((element) {
-                arts.add(Text(element));
-              });
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: arts,
+              return StreamBuilder(
+                stream: _artStream,
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> artSnapshot) {
+                  if (artSnapshot.hasError) {
+                    return const Text('Something went wrong');
+                  }
+                  if (artSnapshot.connectionState == ConnectionState.waiting) {
+                    return const Text('Loading...');
+                  }
+                  List<Widget> arts = [];
+                  arts.add(Text(data['name'],
+                      style: const TextStyle(fontWeight: FontWeight.bold)));
+                  artSnapshot.data!.docs.forEach((element) {
+                    if (data['pendingApprovals'].contains(element.id)) {
+                      arts.add(Text(element.get('name')));
+                    }
+                  });
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: arts,
+                  );
+                },
               );
             } else {
-              return const Text('nothing');
+              return const Text('');
             }
           }).toList(),
         );
