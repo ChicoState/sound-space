@@ -48,12 +48,13 @@ class _ApprovalRequestFormState extends State<ApprovalRequestForm> {
           .get();
 
       if (musicSnapshot.docs.isNotEmpty) {
-        List tmp = musicSnapshot.docs.first.get('pendingApprovals');
-        if (!tmp.contains(artID)) {
-          tmp.add(artID);
+        List pending = musicSnapshot.docs.first.get('pendingApprovals');
+        List approved = musicSnapshot.docs.first.get('approvals');
+        if (!pending.contains(artID) && !approved.contains(artID)) {
+          pending.add(artID);
           return music
               .doc(musicID)
-              .update({'pendingApprovals': tmp})
+              .update({'pendingApprovals': pending})
               .then((value) =>
                   print("Added Approval( art: $artID , music: $musicID )"))
               .catchError((e) => print("ADDING ART ERROR: $e"));
