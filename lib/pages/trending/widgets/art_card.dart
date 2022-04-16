@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:soundspace/constants/style.dart';
-import 'package:soundspace/pages/trending/widgets/components/custom_list_tile.dart';
+import 'package:soundspace/helpers/responsiveness.dart';
+import 'package:soundspace/pages/trending/widgets/components/art_list_tile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ArtCard extends StatelessWidget {
-  final String title;
-  final bool isActive;
-
-  const ArtCard({Key? key, required this.title, this.isActive = false})
-      : super(key: key);
+  const ArtCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    double _width = MediaQuery.of(context).size.width;
+    double _height = MediaQuery.of(context).size.height;
     return Expanded(
       child: InkWell(
         child: Container(
+            // Set up card background color and shape
             height: MediaQuery.of(context).size.height * 0.66,
             alignment: Alignment.center,
             decoration: BoxDecoration(
@@ -33,12 +33,13 @@ class ArtCard extends StatelessWidget {
               const SizedBox(height: 20),
               RichText(
                   textAlign: TextAlign.center,
-                  text: TextSpan(children: [
+                  text: const TextSpan(children: [
                     TextSpan(
-                        text: "$title\n",
-                        style: const TextStyle(
-                            fontSize: 35, color: Colors.black87)),
+                        // title
+                        text: "Art",
+                        style: TextStyle(fontSize: 35, color: Colors.black87)),
                   ])),
+              const SizedBox(height: 15),
               Expanded(
                   //fetch all 'art-url' documents
                   child: FutureBuilder<QuerySnapshot>(
@@ -49,20 +50,61 @@ class ArtCard extends StatelessWidget {
                         if (snapshot.hasData) {
                           final List<DocumentSnapshot> documents =
                               snapshot.data!.docs;
-                          //pass data to customListTile
-                          return ListView.builder(
+                          //pass data to artListTile
+                          return GridView.builder(
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: // if small screen show 1 image, else show 2 per line
+                                    (ResponsiveWidget.isSmallScreen(context)
+                                        ? 1
+                                        : 2),
+                                childAspectRatio: 3 / 2, // scales spacing
+                              ),
                               itemCount: documents.length,
-                              itemBuilder: ((context, index) => customListTile(
-                                  onTap: () {}, // used to navigate to page (?)
-                                  title: documents[index]['name'],
-                                  singer: documents[index]
-                                      ['user'], //email for now
+                              itemBuilder: ((context, index) => artListTile(
+                                  onTap: () {
+                                    // Enlarge photos to full view when clicked
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            fullscreenDialog: false,
+                                            builder: (BuildContext context) {
+                                              return Scaffold(
+                                                  body: GestureDetector(
+                                                // add padding so images don't go to very edge
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(14),
+                                                  child: Center(
+                                                      child: Hero(
+                                                    // image animation when opening/closing
+                                                    tag: 'imageHero',
+                                                    child: ClipRRect(
+                                                        // add slight border to images
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(6),
+                                                        child: Image.network(
+                                                          // show clicked image
+                                                          documents[index]
+                                                              ['url'],
+                                                          fit: BoxFit.fill,
+                                                        )),
+                                                  )),
+                                                ),
+                                                onTap: () {
+                                                  // return to art card
+                                                  Navigator.pop(context);
+                                                },
+                                              ));
+                                            }));
+                                  },
+                                  owner: documents[index]['name'],
                                   cover: documents[index]['url'])));
                         } else {
                           return const Text("Error");
                         }
                       })),
-              Container()
             ])),
       ),
     );

@@ -92,19 +92,19 @@ class TrendingPage extends StatelessWidget {
                               _height / 20,
                               _width / 12,
                               _height / 20), // left, top, right, bottom
-                          child: const MusicCard(title: "Music")),
+                          child: const MusicCard()),
                       // Video trending card
                       Padding(
                           // add padding to each side
                           padding: EdgeInsets.fromLTRB(_width / 12,
                               _height / 20, _width / 12, _height / 20),
-                          child: const VideoCard(title: "Videos")),
+                          child: const VideoCard()),
                       // Art trending card
                       Padding(
                           // add padding to each side
                           padding: EdgeInsets.fromLTRB(_width / 12,
                               _height / 20, _width / 12, _height / 20),
-                          child: const ArtCard(title: "Art"))
+                          child: const ArtCard())
                     ],
                   )))),
     );
