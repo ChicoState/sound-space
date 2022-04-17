@@ -1,5 +1,21 @@
-# Sound Space
+# Testing Badges
 [![build container](https://github.com/ChicoState/sound-space/actions/workflows/build_test.yml/badge.svg)](https://github.com/ChicoState/sound-space/actions/workflows/build_test.yml)
+
+# This Sound Space
+
+Sound Space is a place for music lovers. Musicians, Artists and Listeners
+are all welcome. The general idea behind Sound Space is that Musicians will
+create and post music, and that music will cause inspiration in Artists
+and listeners alike.
+
+## Flow
+- Step 1: users must create an account before they can do anything \\
+- ![Login screenshot](./wireframe/readme_assets/login_shot.png) \\
+- Step 2: whether you are an artist or a musician you can upload your media
+	from our uploads center. \\
+- ![Uploads screenshot](./wireframe/readme_assets/uploads_shot.png) \\
+- - everything you upload will be attached to your users account. \\
+
 
 # DEVELOPMENT
 
