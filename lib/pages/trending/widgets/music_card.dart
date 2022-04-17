@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:soundspace/constants/style.dart';
 //import 'package:soundspace/constants/music_list.dart'; //deprecated, but maybe keep as example of supported image links
-import 'package:soundspace/pages/trending/widgets/components/custom_list_tile.dart';
+import 'package:soundspace/pages/trending/widgets/components/art_list_tile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:soundspace/pages/trending/widgets/components/media_list_tile.dart';
 
 class MusicCard extends StatelessWidget {
-  final String title;
-  final bool isActive;
-
-  const MusicCard({Key? key, required this.title, this.isActive = false})
-      : super(key: key);
+  const MusicCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +31,10 @@ class MusicCard extends StatelessWidget {
               const SizedBox(height: 20),
               RichText(
                   textAlign: TextAlign.center,
-                  text: TextSpan(children: [
+                  text: const TextSpan(children: [
                     TextSpan(
-                        text: "$title\n",
-                        style: const TextStyle(
-                            fontSize: 35, color: Colors.black87)),
+                        text: "Music",
+                        style: TextStyle(fontSize: 35, color: Colors.black87)),
                   ])),
               Expanded(
                   //fetch all 'art-url' documents
@@ -55,7 +51,7 @@ class MusicCard extends StatelessWidget {
                           //pass data to customListTile
                           return ListView.builder(
                               itemCount: documents.length,
-                              itemBuilder: ((context, index) => customListTile(
+                              itemBuilder: ((context, index) => mediaListTile(
                                   onTap: () {}, // used to navigate to page (?)
                                   title: documents[index]['name'],
                                   singer: documents[index]

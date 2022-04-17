@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget customListTile(
+Widget mediaListTile(
     {required String title,
     required String singer,
     required String cover,
@@ -12,8 +12,8 @@ Widget customListTile(
           child: Row(
             children: [
               Container(
-                height: 50.0,
-                width: 50.0,
+                height: 60.0,
+                width: 60.0,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(14.0),
                     image: DecorationImage(image: NetworkImage(cover))),
