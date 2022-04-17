@@ -9,15 +9,15 @@ create and post music, and that music will cause inspiration in Artists
 and listeners alike.
 
 ## Flow
-- Step 1: users must create an account before they can do anything \
-- ![Login screenshot](./wireframe/readme_assets/login_shot.png) \
+- Step 1: users must create an account before they can do anything
+- ![Login screenshot](./wireframe/readme_assets/login_shot.png)
 - Step 2: whether you are an artist or a musician you can upload your media
-	from our uploads center. \
-- ![Uploads screenshot](./wireframe/readme_assets/uploads_shot.png) \
-- - everything you upload will be attached to your users account. \
-- Musician step 3: Listen to your or others music. \
+	from our uploads center.
+- ![Uploads screenshot](./wireframe/readme_assets/uploads_shot.png)
+- - everything you upload will be attached to your users account.
+- Musician step 3: Listen to your or others music.
 <!-- screen shot of music page -->
-- Artist step 3: apply to have your art attached to someones muisic. \
+- Artist step 3: apply to have your art attached to someones muisic.
 <!-- screen shot of application proccess -->
 
 
