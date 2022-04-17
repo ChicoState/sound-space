@@ -8,6 +8,8 @@ import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 // official iFrame Player API
 
 import "url_handler.dart";
+import "volume_ui.dart";
+import "play_pause_button.dart";
 
 class YtPlayer extends StatefulWidget {
   // this value is a final const List of const String
@@ -68,7 +70,7 @@ class _YtPlayerState extends State<YtPlayer> {
                   const SizedBox(
                     width: 400,
                     child: SingleChildScrollView(
-                      // custom controls for video currently disabled
+                      // // custom controls for video currently disabled
                       child: Controls(),
                     ),
                   ),
@@ -144,8 +146,10 @@ class Controls extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('user'),
-          Text('hi there'),
+          _space,
+          VolumeSlider(),
+          _space,
+          PlayPauseButtonBar(),
         ],
       ),
     );
