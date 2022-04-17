@@ -2,7 +2,6 @@
 [![build container](https://github.com/ChicoState/sound-space/actions/workflows/build_test.yml/badge.svg)](https://github.com/ChicoState/sound-space/actions/workflows/build_test.yml)
 
 # This Sound Space
-
 Sound Space is a place for music lovers. Musicians, Artists and Listeners
 are all welcome. The general idea behind Sound Space is that Musicians will
 create and post music, and that music will cause inspiration in Artists
