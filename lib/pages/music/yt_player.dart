@@ -36,9 +36,9 @@ class _YtPlayerState extends State<YtPlayer> {
         startAt: const Duration(minutes: 1, seconds: 36),
         showControls: false,
         showFullscreenButton: true,
-        desktopMode: true,
+        desktopMode: false,
         privacyEnhanced: true,
-        useHybridComposition: false,
+        useHybridComposition: true,
       ),
     );
     _controller.onEnterFullscreen = () {

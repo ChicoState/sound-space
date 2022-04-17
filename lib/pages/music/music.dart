@@ -3,15 +3,16 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+//to properly use ApplicationState context
+import 'package:soundspace/pages/account/applicationState.dart';
+import 'package:provider/provider.dart';
+import 'package:soundspace/pages/account/authentication.dart';
+//to redirect to login page (currently "Account")
+import 'package:get/get.dart';
+import 'package:soundspace/constants/controllers.dart';
+import 'package:soundspace/helpers/responsiveness.dart';
 
-// firebase deps
-import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
-import 'yt_player.dart';
-import 'url_handler.dart';
+import 'stream_builder.dart';
 
 class MusicPage extends StatefulWidget {
   const MusicPage({Key? key}) : super(key: key);
@@ -23,41 +24,56 @@ class MusicPage extends StatefulWidget {
 class _MusicPageImpl extends State<MusicPage> {
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> music = FirebaseFirestore.instance
-        .collection('MUSIC')
-        .where('user', isEqualTo: FirebaseAuth.instance.currentUser!.email)
-        .snapshots();
-    return StreamBuilder<QuerySnapshot>(
-      stream: music,
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> qs) {
-        if (qs.hasError) {
-          // catch errors
-          return const Text('FIRESTORE ERROR');
-        }
-
-        if (qs.connectionState == ConnectionState.waiting) {
-          // server connection error
-          return const Text('Loading...');
-        }
-
-        // urls is the string list of all urls
-        List<String> urls = [];
-        qs.data!.docs.forEach((DocumentSnapshot d) {
-          // adding only key to urls
-          urls.add(url_key(d.get('url')!));
-        });
-
-        return MaterialApp(
-          title: 'Music Player',
-          theme: ThemeData(
-            brightness: Brightness.dark,
-            primarySwatch: Colors.blue,
-            scaffoldBackgroundColor: Colors.black,
-          ),
-          debugShowCheckedModeBanner: false,
-          home: YtPlayer(data: urls), // passive passthrough of data
-        );
-      },
-    );
+    return Consumer<ApplicationState>(
+        builder: (context, appState, _) => Column(
+                // positionals
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  if (appState.loginState ==
+                      ApplicationLoginState.loggedIn) ...[
+                    YTStreamBuilder(),
+                  ] else ...[
+                    // not logged in, redirect to log in page
+                    const Center(
+                        child: Text(
+                      'Please log in before uploading content',
+                      style: TextStyle(fontStyle: FontStyle.italic),
+                    )),
+                    ElevatedButton(
+                        onPressed: () {
+                          menuController.changeActiveItemTo("Account");
+                          if (ResponsiveWidget.isSmallScreen(context)) {
+                            Get.back();
+                          }
+                          navigationController.navigateTo("/account");
+                        },
+                        // define button theme and text
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.transparent, // hide large button
+                            shadowColor:
+                                Colors.transparent, // hide button shadow
+                            padding: EdgeInsets.zero,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20))),
+                        // add gradient to button
+                        child: Ink(
+                            decoration: BoxDecoration(
+                                gradient: const LinearGradient(colors: [
+                                  Colors.purpleAccent,
+                                  Colors.blueAccent
+                                ]),
+                                borderRadius: BorderRadius.circular(20)),
+                            // define container to hold the text button
+                            child: Container(
+                                height: 50,
+                                width: 200,
+                                alignment: Alignment.center,
+                                child: const Text(
+                                  'Log In',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ))))
+                  ],
+                ]));
   }
 }

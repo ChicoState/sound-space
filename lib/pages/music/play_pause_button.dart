@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
+// TODO
+// we need to custimize this to our own needs if possible
+
 ///
 class PlayPauseButtonBar extends StatelessWidget {
   final ValueNotifier<bool> _isMuted = ValueNotifier(false);
@@ -28,20 +31,6 @@ class PlayPauseButtonBar extends StatelessWidget {
                           : context.ytController.play();
                     }
                   : null,
-            );
-          },
-        ),
-        ValueListenableBuilder<bool>(
-          valueListenable: _isMuted,
-          builder: (context, isMuted, _) {
-            return IconButton(
-              icon: Icon(isMuted ? Icons.volume_off : Icons.volume_up),
-              onPressed: () {
-                _isMuted.value = !isMuted;
-                isMuted
-                    ? context.ytController.unMute()
-                    : context.ytController.mute();
-              },
             );
           },
         ),
