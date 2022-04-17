@@ -2,11 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-//called by AccountPage to display all the currently logged in user's uploads
-//values are returned in a Column widget - can be formatted acordingly
+/*  called by AccountPage to display all the currently logged in user's uploads
+ *  values are returned in a Column widget - can be formatted acordingly
+ *  arguments:
+ *    query [required], name of collection to query
+ *      - ART
+ *      - MUSIC: assume 'isVideo' is defined
+ *      - [other]: assume 'name', 'url', and 'user' are defined
+ *    isVideo [optional], filter for MUSIC query
+ *      - true:  return only videos
+ *      - false: return only music
+ *      - null:  assume false, return only music
+ */
 class UrlInfo extends StatefulWidget {
   final String query;
-  const UrlInfo({Key? key, required this.query}) : super(key: key);
+  final bool? isVideo;
+  const UrlInfo({Key? key, required this.query, this.isVideo})
+      : super(key: key);
 
   @override
   _UrlInfoState createState() => _UrlInfoState();
@@ -16,10 +28,32 @@ class _UrlInfoState extends State<UrlInfo> {
   @override
   Widget build(BuildContext context) {
     //filter uploads for only those matching user's email
-    final Stream<QuerySnapshot> _urlStream = FirebaseFirestore.instance
-        .collection(widget.query)
-        .where('user', isEqualTo: FirebaseAuth.instance.currentUser!.email)
-        .snapshots();
+    Stream<QuerySnapshot> _urlStream;
+    //'MUSIC' contains videos and nonvideos, so filter by identifier boolean
+    //if a value for 'isVideo' is not given in the call to the widget, assume false
+    if (widget.query == 'MUSIC') {
+      if (widget.isVideo != null && widget.isVideo!) {
+        //get user's video collections
+        _urlStream = FirebaseFirestore.instance
+            .collection(widget.query)
+            .where('user', isEqualTo: FirebaseAuth.instance.currentUser!.email)
+            .where('isVideo', isEqualTo: true)
+            .snapshots();
+      } else {
+        //get user's music collections
+        _urlStream = FirebaseFirestore.instance
+            .collection(widget.query)
+            .where('user', isEqualTo: FirebaseAuth.instance.currentUser!.email)
+            .where('isVideo', isEqualTo: false)
+            .snapshots();
+      }
+    } else {
+      //get a different collection (in this case, should always be 'ART')
+      _urlStream = FirebaseFirestore.instance
+          .collection(widget.query)
+          .where('user', isEqualTo: FirebaseAuth.instance.currentUser!.email)
+          .snapshots();
+    }
     return StreamBuilder<QuerySnapshot>(
       stream: _urlStream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
