@@ -130,27 +130,28 @@ class _ViewApprovalsState extends State<ViewApprovals> {
                   }
                   //build the content of the widget as a List of Widgets
                   List<Widget> arts = [];
-                  //WIDGET: title of the video (bolded)
+                  //add title of the video (bolded)
                   arts.add(Text(data['name'],
                       style: const TextStyle(fontWeight: FontWeight.bold)));
                   artSnapshot.data!.docs.forEach((element) {
                     if (data['pendingApprovals'].contains(element.id)) {
-                      //WIDGET: name of pending artwork
-                      arts.add(Text(element.get('name')));
-                      //WIDGET: approve button
-                      arts.add(TextButton(
-                        child: const Text("Approve"),
-                        onPressed: () {
-                          approveArt(data['name'], element.id);
-                        },
-                      ));
-                      //WIDGET: reject button
-                      arts.add(TextButton(
-                        child: const Text("Reject"),
-                        onPressed: () {
-                          rejectArt(data['name'], element.id);
-                        },
-                      ));
+                      //Add pending artwork and approve/reject buttons in a Row
+                      arts.add(Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(element.get('name')),
+                            TextButton(
+                                child: const Text('Approve'),
+                                onPressed: () {
+                                  approveArt(data['name'], element.id);
+                                }),
+                            TextButton(
+                                child: const Text('Reject'),
+                                onPressed: () {
+                                  rejectArt(data['name'], element.id);
+                                }),
+                          ]));
                     }
                   });
                   //return a column with the list of widgets
