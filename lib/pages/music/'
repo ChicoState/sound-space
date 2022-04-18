@@ -26,13 +26,14 @@ class _MusicPageImpl extends State<MusicPage> {
   Widget build(BuildContext context) {
     return Consumer<ApplicationState>(
         builder: (context, appState, _) => Scaffold(
-              // positionals
-              // if (appState.loginState ==
-              //     ApplicationLoginState.loggedIn) ...[
-              body: YTStreamBuilder(),
-              // [ else ...[
-              //   body: Text("please login"),
-              // ],
-            ));
+                // positionals
+                // crossAxisAlignment: CrossAxisAlignment.start,
+                  // if (appState.loginState ==
+                  //     ApplicationLoginState.loggedIn) ...[
+                  body: YTStreamBuilder(),
+                  // ] else ...[
+                  //   Text("please login"),
+                  // ],
+                ));
   }
 }
