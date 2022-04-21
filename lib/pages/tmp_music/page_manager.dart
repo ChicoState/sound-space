@@ -15,6 +15,8 @@ class PageManager {
   );
   final buttonNotifier = ValueNotifier<ButtonState>(ButtonState.paused);
 
+  final curSong = ValueNotifier<String>('');
+
   late AudioPlayer _audioPlayer;
   PageManager() {
     _init();
@@ -67,8 +69,9 @@ class PageManager {
     });
   }
 
-  void setSong(String url) {
+  void setSong(String url, String id) {
     _audioPlayer.setUrl(url);
+    curSong.value = id;
   }
 
   void play() {
