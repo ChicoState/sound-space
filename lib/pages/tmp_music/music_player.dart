@@ -88,58 +88,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
                     }
                   });
             }),
-        /*child: FutureBuilder<QuerySnapshot>(
-            future: FirebaseFirestore.instance.collection('ART').get(),
-            //convert documents into a list
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                final List<DocumentSnapshot> documents = snapshot.data!.docs;
-                //pass data to artListTile
-                return ListView.builder(
-                    itemCount: documents.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: ((context, index) => albumArt(
-                        onTap: () {
-                          // Enlarge photos to full view when clicked
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  fullscreenDialog: false,
-                                  builder: (BuildContext context) {
-                                    return Scaffold(
-                                        body: GestureDetector(
-                                      // add padding so images don't go to very edge
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(14),
-                                        child: Center(
-                                            child: Hero(
-                                          // image animation when opening/closing
-                                          tag: 'imageHero',
-                                          child: ClipRRect(
-                                              // add slight border to images
-                                              borderRadius:
-                                                  BorderRadius.circular(6),
-                                              child: Image.network(
-                                                // show clicked image
-                                                documents[index]['url'],
-                                                fit: BoxFit.fill,
-                                              )),
-                                        )),
-                                      ),
-                                      onTap: () {
-                                        // return to art card
-                                        Navigator.pop(context);
-                                      },
-                                    ));
-                                  }));
-                        },
-                        cover: documents[index]['url'])));
-              } else {
-                return const Text("Error");
-              }
-            }),*/
       ),
-
       // Build Music Player
       Container(
         // Search Bar
