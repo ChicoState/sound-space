@@ -26,6 +26,7 @@ class _VideoHandlerState extends State<VideoHandler> {
     var user = FirebaseAuth.instance.currentUser;
     //list to be populated w/ IDs of approved art
     List approvals = [];
+    List pendingApprovals = [];
     if (user == null) {
       //this *should* never run because of the if/else in upload.dart
       print("ERROR: image_handler upload - User should not be null");
@@ -37,7 +38,8 @@ class _VideoHandlerState extends State<VideoHandler> {
           'url': url,
           'user': user!.email,
           'isVideo': true,
-          'approvals': approvals
+          'approvals': approvals,
+          'pendingApprovals': pendingApprovals
         })
         // .then is for any console output mostly for testing
         .then((value) => print("Added Video( name: $name , url: $url )"))
