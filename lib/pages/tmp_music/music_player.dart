@@ -5,6 +5,8 @@ import 'package:soundspace/pages/tmp_music/cover_display.dart';
 import 'package:soundspace/pages/tmp_music/media_display.dart';
 import 'package:soundspace/pages/tmp_music/page_manager.dart';
 
+import 'package:soundspace/pages/music/url_handler.dart';
+
 class MusicPlayer extends StatefulWidget {
   const MusicPlayer({Key? key}) : super(key: key);
 
@@ -49,6 +51,11 @@ class _MusicPlayerState extends State<MusicPlayer> {
                           itemBuilder: ((context, index) => albumArt(
                               onTap: () {
                                 // Enlarge photos to full view when clicked
+                                String img = documents[index]['url'];
+                                if (documents[index]['isVideo']) {
+                                  img =
+                                      "https://i.ytimg.com/vi/${url_key(img)}/hqdefault.jpg";
+                                }
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -70,7 +77,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
                                                             6),
                                                     child: Image.network(
                                                       // show clicked image
-                                                      documents[index]['url'],
+                                                      img,
                                                       fit: BoxFit.fill,
                                                     )),
                                               )),
@@ -108,10 +115,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
       Expanded(
           // Music List
           child: FutureBuilder<QuerySnapshot>(
-              future: FirebaseFirestore.instance
-                  .collection('MUSIC')
-                  .where('isVideo', isEqualTo: false)
-                  .get(),
+              future: FirebaseFirestore.instance.collection('MUSIC').get(),
               //convert documents into a list
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
