@@ -6,13 +6,13 @@ import 'package:firebase_auth/firebase_auth.dart';
  *  values are returned in a Column widget - can be formatted acordingly
  *  arguments:
  *    query [required], name of collection to query
- *      - ART
- *      - MUSIC: assume 'isVideo' is defined
+ *      - MUSIC
+ *      - ART: assume 'isVideo' is defined
  *      - [other]: assume 'name', 'url', and 'user' are defined
- *    isVideo [optional], filter for MUSIC query
+ *    isVideo [optional], filter for ART query
  *      - true:  return only videos
- *      - false: return only music
- *      - null:  assume false, return only music
+ *      - false: return only art
+ *      - null:  assume false, return only art
  */
 class UrlInfo extends StatefulWidget {
   final String query;
@@ -31,7 +31,7 @@ class _UrlInfoState extends State<UrlInfo> {
     Stream<QuerySnapshot> _urlStream;
     //'MUSIC' contains videos and nonvideos, so filter by identifier boolean
     //if a value for 'isVideo' is not given in the call to the widget, assume false
-    if (widget.query == 'MUSIC') {
+    if (widget.query == 'ART') {
       if (widget.isVideo != null && widget.isVideo!) {
         //get user's video collections
         _urlStream = FirebaseFirestore.instance

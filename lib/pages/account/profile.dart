@@ -97,24 +97,24 @@ class ProfileLayout extends StatelessWidget {
                             Column(
                               // All uploads
                               children: const [
-                                UrlInfo(query: 'MUSIC', isVideo: false),
-                                UrlInfo(query: 'ART'),
-                                UrlInfo(query: 'MUSIC', isVideo: true)
+                                UrlInfo(query: 'MUSIC'),
+                                UrlInfo(query: 'ART', isVideo: false),
+                                UrlInfo(query: 'ART', isVideo: true)
                               ],
                             )
                           ],
                         ),
                         ListView(children: const [
                           // music uploads
-                          UrlInfo(query: 'MUSIC', isVideo: false)
+                          UrlInfo(query: 'MUSIC')
                         ]),
                         ListView(children: const [
                           // videos  uploads
-                          UrlInfo(query: 'MUSIC', isVideo: true)
+                          UrlInfo(query: 'ART', isVideo: true)
                         ]),
                         ListView(children: const [
                           // art uploads
-                          UrlInfo(query: 'ART')
+                          UrlInfo(query: 'ART', isVideo: false)
                         ])
                       ],
                     )))),

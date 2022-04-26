@@ -38,6 +38,7 @@ class _ImageHandlerState extends State<ImageHandler> {
         .add({
           'name': name,
           'url': url,
+          'isVideo': false,
           'user': user!.email,
           'approvedFor': approvedFor
         })

@@ -36,7 +36,6 @@ class _MusicHandlerState extends State<MusicHandler> {
           'name': name,
           'url': url,
           'user': user!.email,
-          'isVideo': false,
           'approvals': approvals,
           'pendingApprovals': pendingApprovals
         })

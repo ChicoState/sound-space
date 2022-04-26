@@ -82,7 +82,8 @@ class _MusicPlayerState extends State<MusicPlayer> {
                                           ));
                                         }));
                               },
-                              cover: documents[index]['url'])));
+                              cover: documents[index]['url'],
+                              isVideo: documents[index]['isVideo'])));
                     } else {
                       return const Text("No art yet!");
                     }

@@ -39,10 +39,8 @@ class MusicCard extends StatelessWidget {
               Expanded(
                   //fetch all 'art-url' documents
                   child: FutureBuilder<QuerySnapshot>(
-                      future: FirebaseFirestore.instance
-                          .collection('MUSIC')
-                          .where('isVideo', isEqualTo: false)
-                          .get(),
+                      future:
+                          FirebaseFirestore.instance.collection('MUSIC').get(),
                       //convert documents into a list
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {

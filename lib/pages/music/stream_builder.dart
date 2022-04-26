@@ -26,8 +26,9 @@ class YTStreamBuilder extends StatefulWidget {
 
 class _StreamBuidlerImpl extends State<YTStreamBuilder> {
   final Stream<QuerySnapshot> music = FirebaseFirestore.instance
-      .collection('MUSIC')
+      .collection('ART')
       .where('user', isEqualTo: FirebaseAuth.instance.currentUser!.email)
+      .where('isVideo', isEqualTo: true)
       .snapshots();
 
   @override
