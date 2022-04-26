@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
-Widget albumArt({required String cover, required VoidCallback onTap}) {
+Widget albumArt(
+    {required String cover,
+    required VoidCallback onTap,
+    required bool isVideo}) {
   return InkWell(
       onTap: onTap,
       child: Column(
