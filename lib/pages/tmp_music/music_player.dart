@@ -23,6 +23,11 @@ class _MusicPlayerState extends State<MusicPlayer> {
     _pageManager = PageManager();
   }
 
+  //params for search bar
+  String searchKey = '';
+  Future<QuerySnapshot> musicQuery =
+      FirebaseFirestore.instance.collection('MUSIC').get();
+
   @override
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height; // page height
@@ -102,20 +107,29 @@ class _MusicPlayerState extends State<MusicPlayer> {
         // Search Bar
         margin: const EdgeInsets.fromLTRB(32, 24, 32, 24),
         child: TextField(
-          controller: TextEditingController(),
-          decoration: InputDecoration(
-              prefixIcon: const Icon(Icons.search),
-              hintText: "Song Title",
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: const BorderSide(color: Colors.purple))),
-          onChanged: searchMusic, // filter function
-        ),
+            controller: TextEditingController(),
+            decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.search),
+                hintText: "Song Title",
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: const BorderSide(color: Colors.purple))),
+            onSubmitted: (value) {
+              //rebuild the FutureBuilder below w/ updated music query
+              setState(() {
+                searchKey = value;
+                musicQuery = FirebaseFirestore.instance
+                    .collection('MUSIC')
+                    .where('name', isGreaterThanOrEqualTo: searchKey)
+                    .where('name', isLessThan: searchKey + 'z')
+                    .get();
+              });
+            }),
       ),
       Expanded(
           // Music List
           child: FutureBuilder<QuerySnapshot>(
-              future: FirebaseFirestore.instance.collection('MUSIC').get(),
+              future: musicQuery,
               //convert documents into a list
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
