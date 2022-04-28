@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:soundspace/pages/music/url_handler.dart';
 
 Widget albumArt(
     {required String cover,
     required VoidCallback onTap,
     required bool isVideo}) {
+  if (isVideo) {
+    cover = "https://i.ytimg.com/vi/${url_key(cover)}/hqdefault.jpg";
+  }
   return InkWell(
       onTap: onTap,
       child: Column(

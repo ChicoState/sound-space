@@ -5,6 +5,8 @@ import 'package:soundspace/pages/tmp_music/cover_display.dart';
 import 'package:soundspace/pages/tmp_music/media_display.dart';
 import 'package:soundspace/pages/tmp_music/page_manager.dart';
 
+import 'package:soundspace/pages/music/url_handler.dart';
+
 class MusicPlayer extends StatefulWidget {
   const MusicPlayer({Key? key}) : super(key: key);
 
@@ -20,6 +22,11 @@ class _MusicPlayerState extends State<MusicPlayer> {
     super.initState();
     _pageManager = PageManager();
   }
+
+  //params for search bar
+  String searchKey = '';
+  Future<QuerySnapshot> musicQuery =
+      FirebaseFirestore.instance.collection('MUSIC').get();
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +56,11 @@ class _MusicPlayerState extends State<MusicPlayer> {
                           itemBuilder: ((context, index) => albumArt(
                               onTap: () {
                                 // Enlarge photos to full view when clicked
+                                String img = documents[index]['url'];
+                                if (documents[index]['isVideo']) {
+                                  img =
+                                      "https://i.ytimg.com/vi/${url_key(img)}/hqdefault.jpg";
+                                }
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -70,7 +82,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
                                                             6),
                                                     child: Image.network(
                                                       // show clicked image
-                                                      documents[index]['url'],
+                                                      img,
                                                       fit: BoxFit.fill,
                                                     )),
                                               )),
@@ -95,23 +107,29 @@ class _MusicPlayerState extends State<MusicPlayer> {
         // Search Bar
         margin: const EdgeInsets.fromLTRB(32, 24, 32, 24),
         child: TextField(
-          controller: TextEditingController(),
-          decoration: InputDecoration(
-              prefixIcon: const Icon(Icons.search),
-              hintText: "Song Title",
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: const BorderSide(color: Colors.purple))),
-          onChanged: searchMusic, // filter function
-        ),
+            controller: TextEditingController(),
+            decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.search),
+                hintText: "Song Title",
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: const BorderSide(color: Colors.purple))),
+            onSubmitted: (value) {
+              //rebuild the FutureBuilder below w/ updated music query
+              setState(() {
+                searchKey = value;
+                musicQuery = FirebaseFirestore.instance
+                    .collection('MUSIC')
+                    .where('name', isGreaterThanOrEqualTo: searchKey)
+                    .where('name', isLessThan: searchKey + 'z')
+                    .get();
+              });
+            }),
       ),
       Expanded(
           // Music List
           child: FutureBuilder<QuerySnapshot>(
-              future: FirebaseFirestore.instance
-                  .collection('MUSIC')
-                  .where('isVideo', isEqualTo: false)
-                  .get(),
+              future: musicQuery,
               //convert documents into a list
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
