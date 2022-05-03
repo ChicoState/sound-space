@@ -24,7 +24,7 @@ class _ApprovalRequestFormState extends State<ApprovalRequestForm> {
   final _musicNameController = TextEditingController();
   final _artNameController = TextEditingController();
 
-  //verify art and music names and create pending approval
+  //verify art and music names and create approval
   Future<void> createApprovalInstance(String artName, String musicName) async {
     //find the art document with matching name
     bool validUpload = true;

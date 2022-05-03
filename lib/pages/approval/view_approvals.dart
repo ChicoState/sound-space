@@ -14,6 +14,7 @@ class _ViewApprovalsState extends State<ViewApprovals> {
       FirebaseFirestore.instance.collection('MUSIC');
   CollectionReference artCollection =
       FirebaseFirestore.instance.collection('ART');
+
   /*  For future consideration:
    *  Maybe add another list of rejected approvals to MUSIC
    *  That way a user can't spam their art for approval
@@ -81,9 +82,9 @@ class _ViewApprovalsState extends State<ViewApprovals> {
           //turn a collection of documents into a dictionary and iterate through
           children: snapshot.data!.docs.map((DocumentSnapshot document) {
             Map<String, dynamic> data = document.data() as Map<String, dynamic>;
-            //check if the document has pending approvals
+            //check if the document has approvals
             if (data['approvals'].isNotEmpty) {
-              //second StreamBuilder - tracks artworks - filters by pending approvals
+              //second StreamBuilder - tracks artworks - filters by approvals
               return StreamBuilder(
                 stream: _artStream,
                 builder: (BuildContext context,
@@ -101,17 +102,12 @@ class _ViewApprovalsState extends State<ViewApprovals> {
                       style: const TextStyle(fontWeight: FontWeight.bold)));
                   artSnapshot.data!.docs.forEach((element) {
                     if (data['approvals'].contains(element.id)) {
-                      //Add pending artwork and approve/reject buttons in a Row
+                      //Add artwork and reject button in a Row
                       arts.add(Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(element.get('name')),
-                            /*TextButton(
-                                child: const Text('Approve'),
-                                onPressed: () {
-                                  approveArt(data['name'], element.id);
-                                }),*/
                             TextButton(
                                 child: const Text('Reject'),
                                 onPressed: () {
@@ -129,7 +125,7 @@ class _ViewApprovalsState extends State<ViewApprovals> {
                 },
               );
             } else {
-              //document has no pending approvals, but we still need a widget
+              //document has no approvals, but we still need a widget
               return const Text('');
             }
           }).toList(),
