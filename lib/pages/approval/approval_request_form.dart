@@ -18,6 +18,7 @@ class ApprovalRequestForm extends StatefulWidget {
 
 class _ApprovalRequestFormState extends State<ApprovalRequestForm> {
   CollectionReference music = FirebaseFirestore.instance.collection('MUSIC');
+  CollectionReference art = FirebaseFirestore.instance.collection('ART');
   final _formKey =
       GlobalKey<FormState>(debugLabel: '_ApprovalRequestFormState');
   final _musicNameController = TextEditingController();
@@ -53,25 +54,25 @@ class _ApprovalRequestFormState extends State<ApprovalRequestForm> {
 
     //only update approval state if both documents were found
     if (validUpload) {
-      musicSnapshot = await FirebaseFirestore.instance
-          .collection('MUSIC')
-          .where(FieldPath.documentId, isEqualTo: musicID)
-          .get();
-
-      if (musicSnapshot.docs.isNotEmpty) {
-        //pull the lists from FireStore
-        List pending = musicSnapshot.docs.first.get('pendingApprovals');
-        List approved = musicSnapshot.docs.first.get('approvals');
-        //prevent duplicates in pending/approved lists
-        if (!pending.contains(artID) && !approved.contains(artID)) {
-          pending.add(artID);
-          return music
-              .doc(musicID)
-              .update({'pendingApprovals': pending})
-              .then((value) =>
-                  print("Added Approval( art: $artID , music: $musicID )"))
-              .catchError((e) => print("ADDING ART ERROR: $e"));
-        }
+      //pull the lists from FireStore
+      List approved = musicSnapshot.docs.first.get('approvals');
+      List approvedFor = artSnapshot.docs.first.get('approvedFor');
+      //prevent duplicates in approved lists
+      if (!approved.contains(artID) && !approvedFor.contains(musicID)) {
+        approved.add(artID);
+        approvedFor.add(musicID);
+        art
+            .doc(artID)
+            .update({'approvedFor': approvedFor})
+            .then((value) => print(
+                "Added Approval to ART document( art: $artID , music: $musicID )"))
+            .catchError((e) => print("UPDATING ART ERROR: $e"));
+        return music
+            .doc(musicID)
+            .update({'approvals': approved})
+            .then((value) => print(
+                "Added Approval to MUSIC document( art: $artID , music: $musicID )"))
+            .catchError((e) => print("UPDATING MUSIC ERROR: $e"));
       }
     }
   }
