@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:soundspace/pages/music/url_handler.dart';
 import 'package:soundspace/pages/tmp_music/cover_display.dart';
 
+import 'yt_player.dart';
+import 'url_key_handler.dart';
+
 class VisualPage extends StatefulWidget {
   var curSong = ValueNotifier<String>('');
 
@@ -13,14 +16,23 @@ class VisualPage extends StatefulWidget {
 }
 
 class _VisualPageState extends State<VisualPage> {
+  final List<String> data = [
+    "https://www.youtube.com/watch?v=bx-0YlFprqc",
+    "https://www.youtube.com/watch?v=_hHwz1UWJmI"
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Center(
         child: Column(
       children: [
         const SizedBox(height: 15),
-        // YOUTUBE PLAYER HERE
-        const Text("Add YT Player here", style: TextStyle(fontSize: 28)),
+        // TODO YOUTUBE PLAYER HERE
+        SizedBox(
+          child: YtPlayer(data: url_key_finder(data)),
+          height: 300,
+        ),
+        // YT player end
         const SizedBox(height: 15),
         Expanded(
           // Define art list (associated with the current song being played)
