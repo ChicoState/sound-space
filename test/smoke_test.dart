@@ -1,4 +1,6 @@
-// dart tes framework
+library smoke_test;
+
+// dart test framework
 import 'package:test/test.dart';
 
 void main() {

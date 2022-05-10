@@ -1,4 +1,5 @@
 List<String> url_key_finder(List<String> yt_url) {
+  // DOES NOT CHECK FOR VALID YOUTUBE URL <- turns out this is hard
   // spits out url key of youtube url string
   // https://www.youtube.com/watch?v=5qap5aO4i9A
   // https://www.youtube.com/watch?v=esDlUtMQmeU

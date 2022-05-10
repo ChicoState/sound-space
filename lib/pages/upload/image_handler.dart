@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soundspace/helpers/url_validator.dart';
 
-import 'valid.dart';
-
 // firebase deps
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
