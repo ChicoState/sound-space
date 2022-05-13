@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:soundspace/constants/style.dart';
 //to properly use ApplicationState context
-import 'package:soundspace/pages/account/applicationState.dart';
+import 'package:soundspace/pages/account/application_state.dart';
 import 'package:provider/provider.dart';
 import 'package:soundspace/pages/account/authentication.dart';
 //to redirect to login page (currently "Account")

@@ -10,7 +10,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //to properly use ApplicationState context
-import 'package:soundspace/pages/account/applicationState.dart';
+import 'package:soundspace/pages/account/application_state.dart';
 import 'package:provider/provider.dart';
 import 'package:soundspace/pages/account/authentication.dart';
 

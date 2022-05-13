@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'authenticationHelpers.dart';
+import 'authentication_helpers.dart';
 
 //this enum is just a state tracker - it tells certain processes where we are in the login process
 enum ApplicationLoginState {
