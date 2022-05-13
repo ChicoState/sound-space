@@ -63,11 +63,12 @@ class _YtPlayerState extends State<YtPlayer> {
         body: LayoutBuilder(
           builder: (context, constraints) {
             if (kIsWeb && constraints.maxWidth > 800) {
-              return Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Expanded(child: player),
-                  const SizedBox(
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: const [
+                  Expanded(child: player),
+                  SizedBox(
                     width: 400,
                     child: SingleChildScrollView(
                       // // custom controls for video currently disabled
@@ -142,17 +143,8 @@ class Controls extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _space,
-          PlayPauseButtonBar(),
-          _space,
-        ],
-      ),
+      padding: const EdgeInsets.only(top: 8),
+      child: PlayPauseButtonBar(),
     );
   }
-
-  Widget get _space => const SizedBox(height: 10);
 }

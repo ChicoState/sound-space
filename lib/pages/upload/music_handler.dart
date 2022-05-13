@@ -25,7 +25,6 @@ class _MusicHandlerState extends State<MusicHandler> {
     var user = FirebaseAuth.instance.currentUser;
     //list to be populated w/ IDs of approved art
     List approvals = [];
-    List pendingApprovals = [];
     if (user == null) {
       //this *should* never run because of the if/else in upload.dart
       print("ERROR: music_handler upload - User should not be null");
@@ -37,7 +36,6 @@ class _MusicHandlerState extends State<MusicHandler> {
           'url': url,
           'user': user!.email,
           'approvals': approvals,
-          'pendingApprovals': pendingApprovals
         })
         // .then is for any console output mostly for testing
         .then((value) => print("Added Music( name: $name , url: $url )"))

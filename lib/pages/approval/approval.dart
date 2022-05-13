@@ -64,7 +64,7 @@ class ApprovalPage extends StatelessWidget {
                                 ApplicationLoginState.loggedIn) ...[
                               //form to submit artwork for approval
                               const ApprovalRequestForm(),
-                              //list of pending approvals with option to approve or reject
+                              //list of approvals with option to reject (remove)
                               const ViewApprovals(),
                             ] else ...[
                               //user is logged out, prompt redirect to account page
