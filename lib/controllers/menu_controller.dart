@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 // Uses GetX package (read on how to use this)
 class MenuController extends GetxController {
   static MenuController instance = Get.find();
-  var activeItem = HomePageDisplayName.obs;
+  var activeItem = homePageDisplayName.obs;
   var hoverItem = "".obs;
 
   changeActiveItemTo(String itemName) {
@@ -22,15 +22,15 @@ class MenuController extends GetxController {
 
   Widget returnIconFor(String itemName) {
     switch (itemName) {
-      case HomePageDisplayName:
+      case homePageDisplayName:
         return _customIcon(Icons.home_outlined, itemName);
-      case TrendingPageDisplayName:
+      case trendingPageDisplayName:
         return _customIcon(Icons.trending_up_outlined, itemName);
-      case UploadPageDisplayName:
+      case uploadPageDisplayName:
         return _customIcon(Icons.file_upload_outlined, itemName);
-      case MusicPageDisplayName:
+      case musicPageDisplayName:
         return _customIcon(Icons.music_note_outlined, itemName);
-      case AccountPageDisplayName:
+      case accountPageDisplayName:
         return _customIcon(Icons.people_alt_outlined, itemName);
       default:
         return _customIcon(Icons.exit_to_app, itemName);

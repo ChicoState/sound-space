@@ -11,7 +11,7 @@ class SideMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _width = MediaQuery.of(context).size.width;
+    //double _width = MediaQuery.of(context).size.width;
     return Container(
         color: light,
         child: ListView(

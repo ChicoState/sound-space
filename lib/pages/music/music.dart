@@ -1,8 +1,4 @@
-import 'dart:developer';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:soundspace/constants/style.dart';
 //to properly use ApplicationState context
 import 'package:soundspace/pages/account/application_state.dart';
@@ -70,13 +66,13 @@ class _MusicPageImpl extends State<MusicPage> {
                             if (appState.loginState ==
                                 ApplicationLoginState.loggedIn) ...[
                               // call profile layout widget
-                              Container(
+                              SizedBox(
                                 width: _width = MediaQuery.of(context)
                                     .size
                                     .width, // page width
                                 height: _height =
                                     MediaQuery.of(context).size.height * 0.8,
-                                child: YTStreamBuilder(),
+                                child: const YTStreamBuilder(),
                               )
                             ] else ...[
                               const Center(

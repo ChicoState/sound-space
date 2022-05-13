@@ -12,11 +12,11 @@ class PageNotFound extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset("assets/images/error.png", width: _width / 3),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const CustomText(
+            children: const [
+              CustomText(
                 text: "Page Not Found",
                 size: 24,
                 weight: FontWeight.bold,

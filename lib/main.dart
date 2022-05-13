@@ -17,7 +17,7 @@ import 'firebase_options.dart';
 import 'pages/account/application_state.dart';
 
 //flutter test
-import 'package:flutter_test/flutter_test.dart';
+//import 'package:flutter_test/flutter_test.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,7 +34,7 @@ void main() async {
   runApp(
     ChangeNotifierProvider(
       create: (context) => ApplicationState(),
-      builder: (context, _) => MyApp(),
+      builder: (context, _) => const MyApp(),
     ),
   );
 }
@@ -45,10 +45,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: HomePageRoute,
+      initialRoute: homePageRoute,
       unknownRoute: GetPage(
           name: "/not-found",
-          page: () => PageNotFound(),
+          page: () => const PageNotFound(),
           transition: Transition.fadeIn),
       getPages: [GetPage(name: rootRoute, page: () => SiteLayout())],
       debugShowCheckedModeBanner: false,

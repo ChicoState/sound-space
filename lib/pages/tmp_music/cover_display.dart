@@ -6,7 +6,7 @@ Widget albumArt(
     required VoidCallback onTap,
     required bool isVideo}) {
   if (isVideo) {
-    cover = "https://i.ytimg.com/vi/${url_key(cover)}/hqdefault.jpg";
+    cover = "https://i.ytimg.com/vi/${urlKey(cover)}/hqdefault.jpg";
   }
   return InkWell(
       onTap: onTap,

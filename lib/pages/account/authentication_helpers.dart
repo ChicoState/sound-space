@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class EmailForm extends StatefulWidget {
-  const EmailForm({required this.callback});
+  const EmailForm({Key? key, required this.callback}) : super(key: key);
   final void Function(String email) callback;
   @override
   _EmailFormState createState() => _EmailFormState();
@@ -66,10 +66,11 @@ class _EmailFormState extends State<EmailForm> {
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({
+    Key? key,
     required this.registerAccount,
     required this.cancel,
     required this.email,
-  });
+  }) : super(key: key);
   final String email;
   final void Function(String email, String displayName, String password)
       registerAccount;
@@ -185,9 +186,10 @@ class _RegisterFormState extends State<RegisterForm> {
 
 class PasswordForm extends StatefulWidget {
   const PasswordForm({
+    Key? key,
     required this.login,
     required this.email,
-  });
+  }) : super(key: key);
   final String email;
   final void Function(String email, String password) login;
   @override

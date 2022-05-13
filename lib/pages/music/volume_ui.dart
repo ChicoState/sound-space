@@ -5,6 +5,7 @@ import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 // we need to custimize this to our own needs if possible
 
 class VolumeSlider extends StatelessWidget {
+  VolumeSlider({Key? key}) : super(key: key);
   final _volume = ValueNotifier<int>(100);
 
   @override

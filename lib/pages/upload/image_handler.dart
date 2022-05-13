@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soundspace/helpers/url_validator.dart';
 
-import 'valid.dart';
-
 // firebase deps
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -95,13 +93,13 @@ class _ImageHandlerState extends State<ImageHandler> {
                       _urlController.text; // this will act as our collected url
                   String _name = _nameController.text;
                   addUrl(_url, _name); // values are added to db here
-                  Scaffold.of(context)
-                      .showSnackBar(SnackBar(content: Text('Processing data')));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Processing data')));
                 } else {
                   // failed
                   // msg for user to change entered data
-                  Scaffold.of(context).showSnackBar(
-                      SnackBar(content: Text('Please enter valid data')));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Please enter valid data')));
                 }
                 // clears text fields no matter the case
                 _urlController.clear();

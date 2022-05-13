@@ -1,19 +1,19 @@
 // List all necessary routes for page
 const rootRoute = "/";
 
-const HomePageDisplayName = "Home";
-const UploadPageDisplayName = "Upload";
-const MusicPageDisplayName = "Music";
-const AccountPageDisplayName = "Account";
-const TrendingPageDisplayName = "Trending";
-const ApprovalPageDisplayName = "Approval";
+const homePageDisplayName = "Home";
+const uploadPageDisplayName = "Upload";
+const musicPageDisplayName = "Music";
+const accountPageDisplayName = "Account";
+const trendingPageDisplayName = "Trending";
+const approvalPageDisplayName = "Approval";
 
-const HomePageRoute = "/home";
-const UploadPageRoute = "/upload";
-const MusicPageRoute = "/music";
-const AccountPageRoute = "/account";
-const TrendingPageRoute = "/trending";
-const ApprovalPageRoute = "/approval";
+const homePageRoute = "/home";
+const uploadPageRoute = "/upload";
+const musicPageRoute = "/music";
+const accountPageRoute = "/account";
+const trendingPageRoute = "/trending";
+const approvalPageRoute = "/approval";
 
 // These are the routes displayed in our right drawer
 
@@ -25,10 +25,10 @@ class MenuItem {
 }
 
 List<MenuItem> sideMenuItems = [
-  MenuItem(HomePageDisplayName, HomePageRoute),
-  MenuItem(TrendingPageDisplayName, TrendingPageRoute),
-  MenuItem(MusicPageDisplayName, MusicPageRoute),
-  MenuItem(UploadPageDisplayName, UploadPageRoute),
-  MenuItem(AccountPageDisplayName, AccountPageRoute),
-  MenuItem(ApprovalPageDisplayName, ApprovalPageRoute),
+  MenuItem(homePageDisplayName, homePageRoute),
+  MenuItem(trendingPageDisplayName, trendingPageRoute),
+  MenuItem(musicPageDisplayName, musicPageRoute),
+  MenuItem(uploadPageDisplayName, uploadPageRoute),
+  MenuItem(accountPageDisplayName, accountPageRoute),
+  MenuItem(approvalPageDisplayName, approvalPageRoute),
 ];

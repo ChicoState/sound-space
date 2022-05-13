@@ -13,6 +13,7 @@ enum ApplicationLoginState {
 class Authentication extends StatelessWidget {
   //required vars
   const Authentication({
+    Key? key,
     required this.loginState,
     required this.email,
     required this.startLoginFlow,
@@ -21,7 +22,7 @@ class Authentication extends StatelessWidget {
     required this.cancelRegistration,
     required this.registerAccount,
     required this.signOut,
-  });
+  }) : super(key: key);
 
   //type of required vars
   final ApplicationLoginState loginState;
