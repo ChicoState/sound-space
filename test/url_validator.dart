@@ -2,7 +2,7 @@ library valid_url;
 
 // dart test framework
 import 'package:test/test.dart';
-import '../lib/helpers/url_validator.dart';
+import 'package:soundspace/helpers/url_validator.dart';
 
 void main() {
   group('Valid Url', () {
