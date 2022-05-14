@@ -1,0 +1,15 @@
+name: flutter testing
+
+on: [ push ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '2.x'
+        architecture: x64
+    - run: flutter pub get
+    - run: flutter test test/main_test.dart
