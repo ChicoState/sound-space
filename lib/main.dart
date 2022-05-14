@@ -16,9 +16,6 @@ import 'firebase_options.dart';
 //auth dependency
 import 'pages/account/application_state.dart';
 
-//flutter test
-//import 'package:flutter_test/flutter_test.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

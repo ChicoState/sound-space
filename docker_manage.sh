@@ -18,7 +18,7 @@ case $1 in
 		# This allows for hot reload with the use of VScode
 		# using this method make sure that everything works with docker before commiting
 		# YOU MUST HAVE GOOGLE CHROME INSTALLED & KNOWN TO FLUTTER
-		flutter run -d chrome
+		flutter run --web-renderer html
 	;;
 	*)
 		echo ""
