@@ -1,5 +1,6 @@
 # Testing Badges
 [![build container](https://github.com/ChicoState/sound-space/actions/workflows/build_test.yml/badge.svg)](https://github.com/ChicoState/sound-space/actions/workflows/build_test.yml)
+[![flutter testing](https://github.com/ChicoState/sound-space/actions/workflows/flutter_testing.yml/badge.svg)](https://github.com/ChicoState/sound-space/actions/workflows/flutter_testing.yml)
 
 # This Sound Space
 Sound Space is a place for music lovers. Musicians, Artists and Listeners
