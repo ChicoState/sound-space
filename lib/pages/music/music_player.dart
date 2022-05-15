@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:soundspace/pages/tmp_music/media_display.dart';
+import 'package:soundspace/pages/music/media_display.dart';
 import 'package:soundspace/pages/visuals/visuals.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 

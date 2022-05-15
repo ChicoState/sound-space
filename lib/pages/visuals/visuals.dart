@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:soundspace/constants/style.dart';
 import 'package:soundspace/pages/music/url_handler.dart';
-import 'package:soundspace/pages/tmp_music/cover_display.dart';
+import 'package:soundspace/pages/music/cover_display.dart';
 
 import 'yt_player.dart';
 import 'url_key_handler.dart';
