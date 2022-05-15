@@ -28,38 +28,36 @@ class HomePage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min, // center text on homepage
               children: [
                 SizedBox(width: _width / 16), // small spacing on left side
-                Container(
-                  child: Column(
-                      // define column for "Welcome to SoundSpace" header
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment:
-                          CrossAxisAlignment.start, // left align text
-                      children: [
-                        SizedBox(
-                            width: _width / 6, // width is 1/6 page
-                            child: const FittedBox(
-                              // dynamic sizing of text
-                              fit: BoxFit.fitWidth, // fit to container width
-                              child: Text(
-                                "Welcome to",
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 77, 77, 77)),
-                              ),
-                            )),
-                        SizedBox(
-                            width: _width / 2, // width is half page
-                            child: const FittedBox(
-                              // dynamic sizing of text
-                              fit: BoxFit.fitWidth, // fit to container width
-                              child: Text(
-                                "Sound Space",
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 0, 0, 0),
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ))
-                      ]),
-                ),
+                Column(
+                    // define column for "Welcome to SoundSpace" header
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment:
+                        CrossAxisAlignment.start, // left align text
+                    children: [
+                      SizedBox(
+                          width: _width / 6, // width is 1/6 page
+                          child: const FittedBox(
+                            // dynamic sizing of text
+                            fit: BoxFit.fitWidth, // fit to container width
+                            child: Text(
+                              "Welcome to",
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 77, 77, 77)),
+                            ),
+                          )),
+                      SizedBox(
+                          width: _width / 2, // width is half page
+                          child: const FittedBox(
+                            // dynamic sizing of text
+                            fit: BoxFit.fitWidth, // fit to container width
+                            child: Text(
+                              "Sound Space",
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 0, 0, 0),
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ))
+                    ]),
                 SizedBox(width: _width / 16), // small spacing between text
                 SizedBox(
                     width: _width / 8, // width is 1/8 of page

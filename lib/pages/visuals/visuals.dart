@@ -8,9 +8,8 @@ import 'yt_player.dart';
 import 'url_key_handler.dart';
 
 class VisualPage extends StatefulWidget {
-  var curSong = ValueNotifier<String>('');
-
-  VisualPage({Key? key, required this.curSong}) : super(key: key);
+  const VisualPage({Key? key, required this.curSong}) : super(key: key);
+  final ValueNotifier<String> curSong;
 
   @override
   State<VisualPage> createState() => _VisualPageState();
