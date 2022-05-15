@@ -67,7 +67,7 @@ void main() {
         'https://www.youtube.com/watch?v=n61ULEU7CO0'
       ];
       final url_keys = ['X-XZx1o_w-A'];
-      expect(url_keys[0], url_key_finder(test_list)[3]);
+      expect(url_keys[0], urlKeyFinder(test_list)[3]);
     });
   });
 }
