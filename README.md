@@ -33,3 +33,11 @@ and listeners alike.
 - view website: docker-compose up -d and go to url localhost:8000
 - stop container: docker-compose down
 - dm cli deprecated
+
+## Metrics
+- for metrics we use dart-analyze
+- more helpful we use dart-code-metrics
+- - flutter pub run dart_code_metrics:metrics check-unused-code lib
+- - flutter pub run dart_code_metrics:metrics analyze lib
+- - flutter pub run dart_code_metrics:metrics check-unused-files lib
+- These commands will produce terminal output with information on our current code
