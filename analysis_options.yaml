@@ -34,8 +34,6 @@ dart_code_metrics:
     cyclomatic-complexity: 10
     number-of-parameters: 4
     maximum-nesting-level: 5
-  metrics-exclude:
-    - test/**
   rules:
   anti-patterns:
     - long-method

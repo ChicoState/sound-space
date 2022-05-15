@@ -2,7 +2,7 @@ library functions;
 
 // dart test framework
 import 'package:test/test.dart';
-import '../lib/pages/visuals/url_key_handler.dart';
+import 'package:soundspace/pages/visuals/url_key_handler.dart';
 
 void main() {
   group('URL_key_finder tests', () {

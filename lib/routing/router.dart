@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soundspace/pages/account/account.dart';
 import 'package:soundspace/pages/approval/approval.dart';
-import 'package:soundspace/pages/music/music.dart';
 import 'package:soundspace/pages/home/home.dart';
 import 'package:soundspace/pages/tmp_music/tmp_music.dart';
 import 'package:soundspace/pages/trending/trending.dart';

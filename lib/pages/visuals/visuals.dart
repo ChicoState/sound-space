@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:soundspace/constants/style.dart';
-import 'package:soundspace/pages/music/url_handler.dart';
 import 'package:soundspace/pages/tmp_music/cover_display.dart';
 
 import 'yt_player.dart';
@@ -94,7 +93,9 @@ class _VisualPageState extends State<VisualPage> {
                                                     if (documents[index]
                                                         ['isVideo']) {
                                                       img =
-                                                          "https://i.ytimg.com/vi/${url_key(img)}/hqdefault.jpg";
+                                                          "https://i.ytimg.com/vi/${url_key_finder([
+                                                            img
+                                                          ])[0]}/hqdefault.jpg";
                                                     }
                                                     Navigator.push(
                                                         context,
