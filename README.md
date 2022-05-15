@@ -37,7 +37,8 @@ and listeners alike.
 ## Metrics
 - for metrics we use dart-analyze
 - more helpful we use dart-code-metrics
-- - flutter pub run dart_code_metrics:metrics check-unused-code lib
-- - flutter pub run dart_code_metrics:metrics analyze lib
-- - flutter pub run dart_code_metrics:metrics check-unused-files lib
+- - ``` flutter pub run dart_code_metrics:metrics check-unused-code lib ```
+- - ``` flutter pub run dart_code_metrics:metrics analyze lib ```
+- - ``` flutter pub run dart_code_metrics:metrics check-unused-files lib ```
 - These commands will produce terminal output with information on our current code
+- metrics config can be found and/or changed in [analysis options](https://github.com/ChicoState/sound-space/blob/1b5d66053df0ce7d5739fe8e29c68957004d55e3/analysis_options.yaml)
