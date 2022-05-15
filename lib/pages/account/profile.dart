@@ -28,7 +28,7 @@ class ProfileLayout extends StatelessWidget {
         ),
         SizedBox(height: _height / 65),
         // show user uploads
-        Container(
+        SizedBox(
             height: _height / 2.4,
             width: _width,
             // Create appbar and tabbar for navigation / display
@@ -41,7 +41,8 @@ class ProfileLayout extends StatelessWidget {
                         elevation: 0, // hide shadow
                         titleSpacing: 0,
                         bottom: PreferredSize(
-                          preferredSize: Size.fromRadius(14), // add padding
+                          preferredSize:
+                              const Size.fromRadius(14), // add padding
                           child: TabBar(
                             // create navigation
                             unselectedLabelColor: Colors.black,

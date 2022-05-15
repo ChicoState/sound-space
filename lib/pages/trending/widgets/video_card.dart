@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soundspace/constants/style.dart';
-import 'package:soundspace/pages/trending/widgets/components/art_list_tile.dart';
+//import 'package:soundspace/pages/trending/widgets/components/art_list_tile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:soundspace/pages/trending/widgets/components/media_list_tile.dart';
 

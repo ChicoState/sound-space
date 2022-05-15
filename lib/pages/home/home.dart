@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:soundspace/constants/controllers.dart';
 import 'package:soundspace/helpers/responsiveness.dart';
-import 'package:soundspace/pages/account/account.dart';
 import 'package:soundspace/widgets/custom_text.dart';
 
 class HomePage extends StatelessWidget {
@@ -36,7 +35,7 @@ class HomePage extends StatelessWidget {
                       crossAxisAlignment:
                           CrossAxisAlignment.start, // left align text
                       children: [
-                        Container(
+                        SizedBox(
                             width: _width / 6, // width is 1/6 page
                             child: const FittedBox(
                               // dynamic sizing of text
@@ -47,7 +46,7 @@ class HomePage extends StatelessWidget {
                                     color: Color.fromARGB(255, 77, 77, 77)),
                               ),
                             )),
-                        Container(
+                        SizedBox(
                             width: _width / 2, // width is half page
                             child: const FittedBox(
                               // dynamic sizing of text
@@ -62,7 +61,7 @@ class HomePage extends StatelessWidget {
                       ]),
                 ),
                 SizedBox(width: _width / 16), // small spacing between text
-                Container(
+                SizedBox(
                     width: _width / 8, // width is 1/8 of page
                     child: FittedBox(
                       // dynamic sizing of text

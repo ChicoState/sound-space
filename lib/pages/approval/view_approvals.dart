@@ -100,7 +100,7 @@ class _ViewApprovalsState extends State<ViewApprovals> {
                   //add title of the video (bolded)
                   arts.add(Text(data['name'],
                       style: const TextStyle(fontWeight: FontWeight.bold)));
-                  artSnapshot.data!.docs.forEach((element) {
+                  for (var element in artSnapshot.data!.docs) {
                     if (data['approvals'].contains(element.id)) {
                       //Add artwork and reject button in a Row
                       arts.add(Row(
@@ -115,7 +115,7 @@ class _ViewApprovalsState extends State<ViewApprovals> {
                                 }),
                           ]));
                     }
-                  });
+                  }
                   //return a column with the list of widgets
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.start,

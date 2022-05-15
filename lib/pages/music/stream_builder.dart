@@ -1,18 +1,8 @@
-import 'dart:developer';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 // firebase deps
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-//to properly use ApplicationState context
-import 'package:soundspace/pages/account/applicationState.dart';
-import 'package:provider/provider.dart';
-import 'package:soundspace/pages/account/authentication.dart';
 
 import 'yt_player.dart';
 import 'url_handler.dart';
@@ -48,10 +38,9 @@ class _StreamBuidlerImpl extends State<YTStreamBuilder> {
 
         // urls is the string list of all urls
         List<String> urls = [];
-        qs.data!.docs.forEach((DocumentSnapshot d) {
-          // adding only key to urls
-          urls.add(url_key(d.get('url')!));
-        });
+        for (var d in qs.data!.docs) {
+          urls.add(urlKey(d.get('url')!));
+        }
 
         return MaterialApp(
           title: 'Music Player',

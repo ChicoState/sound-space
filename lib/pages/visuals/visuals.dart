@@ -59,8 +59,8 @@ class _VisualPageState extends State<VisualPage> {
                     children: [
                       const SizedBox(height: 15),
                       // YouTube Player
-                      Container(
-                        child: YtPlayer(data: url_key_finder(data)),
+                      SizedBox(
+                        child: YtPlayer(data: urlKeyFinder(data)),
                         height: 320,
                         width: 450,
                       ),
@@ -94,7 +94,7 @@ class _VisualPageState extends State<VisualPage> {
                                                     if (documents[index]
                                                         ['isVideo']) {
                                                       img =
-                                                          "https://i.ytimg.com/vi/${url_key(img)}/hqdefault.jpg";
+                                                          "https://i.ytimg.com/vi/${urlKey(img)}/hqdefault.jpg";
                                                     }
                                                     Navigator.push(
                                                         context,

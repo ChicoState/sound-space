@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soundspace/constants/style.dart';
 //user authentication
-import 'package:soundspace/pages/account/applicationState.dart';
+import 'package:soundspace/pages/account/application_state.dart';
 import 'package:provider/provider.dart';
 import 'package:soundspace/pages/account/authentication.dart';
 //routing

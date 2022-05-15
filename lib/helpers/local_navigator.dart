@@ -5,6 +5,6 @@ import 'package:soundspace/routing/routes.dart';
 
 Navigator localNavigator() => Navigator(
       key: navigationController.navigationKey,
-      initialRoute: HomePageRoute,
+      initialRoute: homePageRoute,
       onGenerateRoute: generateRoute,
     );
