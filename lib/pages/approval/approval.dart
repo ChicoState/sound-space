@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soundspace/constants/style.dart';
 //user authentication
-import 'package:soundspace/pages/account/applicationState.dart';
+import 'package:soundspace/pages/account/application_state.dart';
 import 'package:provider/provider.dart';
 import 'package:soundspace/pages/account/authentication.dart';
 //routing
@@ -65,7 +65,13 @@ class ApprovalPage extends StatelessWidget {
                               //form to submit artwork for approval
                               const ApprovalRequestForm(),
                               //list of approvals with option to reject (remove)
-                              const ViewApprovals(),
+                              const SizedBox(height: 8),
+                              //list of approvals with option to reject (remove)
+                              Container(
+                                height: 350,
+                                child: const SingleChildScrollView(
+                                    child: ViewApprovals()),
+                              )
                             ] else ...[
                               //user is logged out, prompt redirect to account page
                               const Center(

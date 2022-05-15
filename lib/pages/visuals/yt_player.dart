@@ -7,15 +7,16 @@ import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 // Using Youtube Player Iframe project for easier use of
 // official iFrame Player API
 
-import "url_key_handler.dart";
 import 'con.dart';
 
 class YtPlayer extends StatefulWidget {
   // this value is a final const List of const String
   final List<String> data;
 
-  YtPlayer(
-      {required this.data}); // recieving of data, 'required' b/c of dynamic properties.
+  const YtPlayer({Key? key, required this.data})
+      : super(
+            key:
+                key); // recieving of data, 'required' b/c of dynamic properties.
   @override
   _YtPlayerState createState() => _YtPlayerState();
 }
@@ -136,14 +137,13 @@ class _YtPlayerState extends State<YtPlayer> {
 }
 
 class Controls extends StatelessWidget {
-  ///
-  const Controls();
+  const Controls({Key? key}) : super(key: key);
   // all custom controls for the player go in here
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 8),
+    return const Padding(
+      padding: EdgeInsets.only(top: 8),
       child: PlayPauseButtonBar(),
     );
   }

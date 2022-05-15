@@ -3,9 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:soundspace/constants/style.dart';
 import 'package:soundspace/pages/account/profile.dart';
 import 'authentication.dart';
-import 'applicationState.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'url_info.dart';
+import 'application_state.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({Key? key}) : super(key: key);

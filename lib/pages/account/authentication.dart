@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'authenticationHelpers.dart';
+import 'authentication_helpers.dart';
 
 //this enum is just a state tracker - it tells certain processes where we are in the login process
 enum ApplicationLoginState {
@@ -13,6 +13,7 @@ enum ApplicationLoginState {
 class Authentication extends StatelessWidget {
   //required vars
   const Authentication({
+    Key? key,
     required this.loginState,
     required this.email,
     required this.startLoginFlow,
@@ -21,7 +22,7 @@ class Authentication extends StatelessWidget {
     required this.cancelRegistration,
     required this.registerAccount,
     required this.signOut,
-  });
+  }) : super(key: key);
 
   //type of required vars
   final ApplicationLoginState loginState;

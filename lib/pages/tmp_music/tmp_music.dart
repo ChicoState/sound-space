@@ -52,6 +52,6 @@ class _MusicPageTMP extends State<TmpMusicPage> {
                         // add padding to each side
                         padding: EdgeInsets.fromLTRB(_width / 16, _height / 24,
                             _width / 16, _height / 24),
-                        child: MusicPlayer())))));
+                        child: const MusicPlayer())))));
   }
 }
