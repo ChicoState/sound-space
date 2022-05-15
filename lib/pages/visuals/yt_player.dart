@@ -137,7 +137,6 @@ class _YtPlayerState extends State<YtPlayer> {
 }
 
 class Controls extends StatelessWidget {
-  ///
   const Controls({Key? key}) : super(key: key);
   // all custom controls for the player go in here
 

@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
           transition: Transition.fadeIn),
       getPages: [GetPage(name: rootRoute, page: () => SiteLayout())],
       debugShowCheckedModeBanner: false,
-      title: "SoundScape",
+      title: "Sound Space",
       theme: ThemeData(
           scaffoldBackgroundColor: light,
           textTheme: GoogleFonts.mulishTextTheme(Theme.of(context).textTheme)
