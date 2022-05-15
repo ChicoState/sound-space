@@ -2,15 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:soundspace/constants/style.dart';
 import 'package:soundspace/pages/music/url_handler.dart';
-import 'package:soundspace/pages/tmp_music/cover_display.dart';
+import 'package:soundspace/pages/music/cover_display.dart';
 
 import 'yt_player.dart';
 import 'url_key_handler.dart';
 
 class VisualPage extends StatefulWidget {
-  var curSong = ValueNotifier<String>('');
-
-  VisualPage({Key? key, required this.curSong}) : super(key: key);
+  const VisualPage({Key? key, required this.curSong}) : super(key: key);
+  final ValueNotifier<String> curSong;
 
   @override
   State<VisualPage> createState() => _VisualPageState();

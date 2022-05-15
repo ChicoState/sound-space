@@ -45,7 +45,7 @@ void main() {
     });
     test('indexing_list_middle', () {
       // this test proves that no extra information is extracted
-      final test_list = [
+      final testList = [
         'https://www.youtube.com/watch?v=_hHwz1UWJmI=',
         'https://www.youtube.com/watch?v=nq4tT68UoCg',
         'https://www.youtube.com/watch?v=-YUYLbjl7Sk',
@@ -53,8 +53,8 @@ void main() {
         'https://www.youtube.com/watch?v=8iU8LPEa4o0',
         'https://www.youtube.com/watch?v=n61ULEU7CO0'
       ];
-      final url_keys = ['X-XZx1o_w-A'];
-      expect(url_keys[0], url_key_finder(test_list)[3]);
+      final urlKeys = ['X-XZx1o_w-A'];
+      expect(urlKeys[0], urlKeyFinder(testList)[3]);
     });
   });
 }

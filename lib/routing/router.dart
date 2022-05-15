@@ -3,7 +3,7 @@ import 'package:soundspace/pages/account/account.dart';
 import 'package:soundspace/pages/approval/approval.dart';
 //import 'package:soundspace/pages/music/music.dart';
 import 'package:soundspace/pages/home/home.dart';
-import 'package:soundspace/pages/tmp_music/tmp_music.dart';
+import 'package:soundspace/pages/music/music.dart';
 import 'package:soundspace/pages/trending/trending.dart';
 import 'package:soundspace/pages/upload/upload.dart';
 import 'package:soundspace/routing/routes.dart';
@@ -19,7 +19,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case uploadPageRoute:
       return _getPageRoute(const UploadPage());
     case musicPageRoute:
-      return _getPageRoute(const TmpMusicPage()); // TMP MUSIC PAGE BEING USED
+      return _getPageRoute(const MusicPage()); // TMP MUSIC PAGE BEING USED
     case accountPageRoute:
       return _getPageRoute(const AccountPage());
     case approvalPageRoute:

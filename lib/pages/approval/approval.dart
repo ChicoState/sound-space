@@ -67,9 +67,9 @@ class ApprovalPage extends StatelessWidget {
                               //list of approvals with option to reject (remove)
                               const SizedBox(height: 8),
                               //list of approvals with option to reject (remove)
-                              Container(
+                              const SizedBox(
                                 height: 350,
-                                child: const SingleChildScrollView(
+                                child: SingleChildScrollView(
                                     child: ViewApprovals()),
                               )
                             ] else ...[
