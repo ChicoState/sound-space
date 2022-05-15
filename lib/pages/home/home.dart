@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
                               // dynamic sizing of text
                               fit: BoxFit.fitWidth, // fit to container width
                               child: Text(
-                                "SoundSpace",
+                                "Sound Space",
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 0, 0, 0),
                                     fontWeight: FontWeight.bold),
