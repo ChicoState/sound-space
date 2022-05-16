@@ -61,8 +61,8 @@ class _VisualPageState extends State<VisualPage> {
                       // YouTube Player
                       SizedBox(
                         child: YtPlayer(data: urlKeyFinder(data)),
-                        height: 320,
-                        width: 450,
+                        height: 290,
+                        width: 410,
                       ),
                       const SizedBox(height: 15),
                       Expanded(

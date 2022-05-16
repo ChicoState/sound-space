@@ -15,8 +15,8 @@ Widget albumArt(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              width: 180,
-              height: 180,
+              width: 130,
+              height: 130,
               padding: const EdgeInsets.all(12),
               margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: ClipRRect(
